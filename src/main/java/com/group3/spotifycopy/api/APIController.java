@@ -38,5 +38,4 @@ public class APIController {
     public User updateUser(@PathVariable("id") Integer id, @RequestBody User user){
         return userService.updateUser(id, user);
     }
-
 }
