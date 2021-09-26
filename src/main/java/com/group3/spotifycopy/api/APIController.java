@@ -21,7 +21,7 @@ public class APIController {
 
     @GetMapping("/api/{id}")
     public Optional<User> getUserById(@PathVariable("id") Integer id){
-        return userService.getUser(id);
+        return userService.getUserById(id);
     }
 
     @PostMapping("/api")
@@ -36,6 +36,6 @@ public class APIController {
 
     @PutMapping("/api/{id}")
     public User updateUser(@PathVariable("id") Integer id, @RequestBody User user){
-        return userService.updateUser(id, user);
+        return userService.updateUser(user, id);
     }
 }
