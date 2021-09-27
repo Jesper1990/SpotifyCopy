@@ -21,6 +21,11 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
+    public User addUser(User user) {
+        UserDTO newUserDTO = userDAO.addUser(mapFromUser(user));
+        return mapToUser(newUserDTO);
+    }
+
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         for (UserDTO userDTO : userDAO.getAllUsers()) {
@@ -28,25 +33,6 @@ public class UserService {
             users.add(user);
         }
         return users;
-    }
-
-    public User updateUser(User user, Integer id) {
-        User userToUpdate = getUserById(id);
-
-        if (userToUpdate != null) {
-            userToUpdate.setName(user.getName());
-            userToUpdate.setEmail(user.getEmail());
-            userToUpdate.setPlaylists(user.getPlaylists());
-        } else {
-            userToUpdate.setId(id);
-        }
-        UserDTO updatedUser = userDAO.addUser(mapFromUser(userToUpdate));
-        return mapToUser(updatedUser);
-    }
-
-    public User addUser(User user) {
-        UserDTO newUserDTO = userDAO.addUser(mapFromUser(user));
-        return mapToUser(newUserDTO);
     }
 
     public User getUserById(Integer id) {
@@ -62,6 +48,20 @@ public class UserService {
 
     public void deleteAllUsers() {
         userDAO.deleteAllUsers();
+    }
+
+    public User updateUser(User user, Integer id) {
+        User userToUpdate = getUserById(id);
+
+        if (userToUpdate != null) {
+            userToUpdate.setName(user.getName());
+            userToUpdate.setEmail(user.getEmail());
+            userToUpdate.setPlaylists(user.getPlaylists());
+        } else {
+            userToUpdate.setId(id);
+        }
+        UserDTO updatedUser = userDAO.addUser(mapFromUser(userToUpdate));
+        return mapToUser(updatedUser);
     }
 
     public UserDTO mapFromUser(User user) {

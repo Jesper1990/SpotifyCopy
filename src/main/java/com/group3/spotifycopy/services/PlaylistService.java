@@ -17,6 +17,11 @@ public class PlaylistService {
         this.playlistDAO = playlistDAO;
     }
 
+    public Playlist addPlaylist(Playlist playlist) {
+        PlaylistDTO newPlaylistDTO = playlistDAO.addPlaylist(mapFromPlaylist(playlist));
+        return mapToPlaylist(newPlaylistDTO);
+    }
+
     public List<Playlist> getAllPlaylists() {
         List<Playlist> playlists = new ArrayList<>();
         for (PlaylistDTO playlistDTO : playlistDAO.getAllPlaylists()) {
@@ -24,24 +29,6 @@ public class PlaylistService {
             playlists.add(playlist);
         }
         return playlists;
-    }
-
-    public Playlist updatePlaylist(Playlist playlist, Integer id) {
-        Playlist playlistToUpdate = getPlaylistById(id);
-
-        if (playlistToUpdate != null) {
-            playlistToUpdate.setPlaylistName(playlist.getPlaylistName());
-            playlistToUpdate.setSongIds(playlist.getSongIds());
-        } else {
-            playlistToUpdate.setId(id);
-        }
-        PlaylistDTO updatedPlaylist = playlistDAO.addPlaylist(mapFromPlaylist(playlistToUpdate));
-        return mapToPlaylist(updatedPlaylist);
-    }
-
-    public Playlist addPlaylist(Playlist playlist) {
-        PlaylistDTO newPlaylistDTO = playlistDAO.addPlaylist(mapFromPlaylist(playlist));
-        return mapToPlaylist(newPlaylistDTO);
     }
 
     public Playlist getPlaylistById(Integer id) {
@@ -57,6 +44,19 @@ public class PlaylistService {
 
     public void deleteAllPlaylists() {
         playlistDAO.deleteAllPlaylists();
+    }
+
+    public Playlist updatePlaylist(Playlist playlist, Integer id) {
+        Playlist playlistToUpdate = getPlaylistById(id);
+
+        if (playlistToUpdate != null) {
+            playlistToUpdate.setPlaylistName(playlist.getPlaylistName());
+            playlistToUpdate.setSongIds(playlist.getSongIds());
+        } else {
+            playlistToUpdate.setId(id);
+        }
+        PlaylistDTO updatedPlaylist = playlistDAO.addPlaylist(mapFromPlaylist(playlistToUpdate));
+        return mapToPlaylist(updatedPlaylist);
     }
 
     public PlaylistDTO mapFromPlaylist(Playlist playlist) {
