@@ -35,7 +35,7 @@ function RegisterPage() {
     <div className = "container">
       <form className="form-group" onSubmit={(e) => submit(e)}>
         <input onChange={(e) => handle(e)} id="email" value={data.email} placeholder="@Email" type="text"></input>
-        <input onChange={(e)=>handle(e)} id="userName" value={data.userName} placeholder="Username" type="text"></input>
+        <input onChange={(e)=>handle(e)} id="name" value={data.name} placeholder="Username" type="text"></input>
         <input onChange={(e)=>handle(e)} id="password" value={data.password} placeholder="Password" type="text"></input>
         
         <button className="btn">Submit</button>
