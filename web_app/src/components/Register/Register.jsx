@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from 'react';
-import './registerPage.css'
+import './Register.css'
 
-function RegisterPage() {
+function Register() {
   const url = "http://localhost:8085/api/users"
   const [data, setData] = useState({
     name: "",
@@ -46,4 +46,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default Register;
