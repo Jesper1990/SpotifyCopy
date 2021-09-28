@@ -1,0 +1,51 @@
+body {
+background-color: rgb(85, 84, 84);
+}
+
+.container{
+  width: 50%;
+  background-color: rgb(63, 62, 62);
+  border-style: hidden ;
+  border-radius: 15px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 8px 6px 6px black;
+  display: flex;
+  align-items: center;
+  
+}
+
+p {
+  color: white;
+}
+.btn {
+  width: 25%;
+background-color:  rgb(1, 145, 54);
+border-radius: 12px;
+color: white;
+font-size : 20px; width: 50%; height: 45px;
+
+}
+
+input {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: rgb(146, 146, 146);
+}
+
+  input::placeholder{
+  color: white;
+}
+
+.btn:hover {background-color: #0d3f0f}
+
+.btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+  
