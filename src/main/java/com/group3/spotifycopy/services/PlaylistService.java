@@ -4,10 +4,12 @@ import com.group3.spotifycopy.dao.PlaylistDAO;
 import com.group3.spotifycopy.models.Playlist;
 import com.group3.spotifycopy.models.dto.PlaylistDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class PlaylistService {
 
     private final PlaylistDAO playlistDAO;
@@ -60,11 +62,11 @@ public class PlaylistService {
     }
 
     public PlaylistDTO mapFromPlaylist(Playlist playlist) {
-        return new PlaylistDTO(playlist.getId(), playlist.getPlaylistName(), playlist.getSongIds());
+        return new PlaylistDTO(playlist.getId(), playlist.getPlaylistName(), playlist.getOwner(), playlist.getSongIds());
     }
 
     public Playlist mapToPlaylist(PlaylistDTO playlistDTO) {
-        return new Playlist(playlistDTO.getId(), playlistDTO.getPlaylistName(), playlistDTO.getSongIds());
+        return new Playlist(playlistDTO.getId(), playlistDTO.getPlaylistName(), playlistDTO.getOwner(), playlistDTO.getSongIds());
     }
 
 }

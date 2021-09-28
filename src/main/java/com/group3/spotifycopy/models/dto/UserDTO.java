@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public  class UserDTO {
+public class UserDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +24,6 @@ public  class UserDTO {
 
     private String name;
     private String email;
-
-    @OneToMany(cascade=CascadeType.ALL)
-    public List<Playlist> playlists;
+    private String password;
 
 }

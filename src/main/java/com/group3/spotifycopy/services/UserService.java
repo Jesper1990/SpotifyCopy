@@ -3,13 +3,11 @@ package com.group3.spotifycopy.services;
 import com.group3.spotifycopy.dao.UserDAO;
 import com.group3.spotifycopy.models.User;
 import com.group3.spotifycopy.models.dto.UserDTO;
-import com.group3.spotifycopy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -56,7 +54,7 @@ public class UserService {
         if (userToUpdate != null) {
             userToUpdate.setName(user.getName());
             userToUpdate.setEmail(user.getEmail());
-            userToUpdate.setPlaylists(user.getPlaylists());
+            userToUpdate.setPassword(user.getPassword());
         } else {
             userToUpdate.setId(id);
         }
@@ -65,11 +63,11 @@ public class UserService {
     }
 
     public UserDTO mapFromUser(User user) {
-        return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getPlaylists());
+        return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getPassword());
     }
 
     public User mapToUser(UserDTO userDTO) {
-        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail(), userDTO.getPlaylists());
+        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail(), userDTO.getPassword());
     }
 
 }
