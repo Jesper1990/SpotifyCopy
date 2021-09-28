@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class APIController {
@@ -20,7 +19,7 @@ public class APIController {
     }
 
     @GetMapping("/api/{id}")
-    public Optional<User> getUserById(@PathVariable("id") Integer id){
+    public User getUserById(@PathVariable("id") Integer id){
         return userService.getUserById(id);
     }
 

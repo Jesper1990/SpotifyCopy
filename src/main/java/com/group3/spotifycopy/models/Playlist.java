@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class Playlist {
