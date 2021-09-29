@@ -17,7 +17,7 @@ function Navbar() {
         <i className={isOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
       </div>
       <div className="testdiv">
-        <ul className={isOpen ? 'nav-menu' : 'nav.menu active'}>
+        <ul className={isOpen ? 'nav.menu active' : 'nav-menu'}>
           {MenuItems.map((item, index) => {
             return (
               <li key={index}>
