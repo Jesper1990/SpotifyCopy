@@ -8,24 +8,24 @@ const SongSearch = () => {
   const dispatch = useDispatch()
   const [input, setInput] = useState('')
   const [songs, setSongs] = useState()
-  const [artists, setArtists] = useState()
+  // const [artists, setArtists] = useState()
 
   const getSong = () => {
     fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${input}`)
       .then((res) => res.json())
       .then((data) => {
         setSongs(data.content)
-        console.log(data.content);
       })
   }
-  const getArtist = () => {
-    fetch(`https://yt-music-api.herokuapp.com/api/yt/artists/${input}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setArtists(data.content[0])
-        console.log(data.content[0])
-      })
-   }
+  // const getArtist = () => {
+  //   fetch(`https://yt-music-api.herokuapp.com/api/yt/search/${input}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       // setArtists(data.content[0])
+  //       console.log(data.content)
+  //       console.log(data.content[0].thumbnails[1].url)
+  //     })
+  //  }
 
   const songClick = (song) => {
     dispatch(setVideoId(song.videoId))
@@ -37,11 +37,11 @@ const SongSearch = () => {
       getSong()
     }
   }
-  const handleArtistKeypress = (e) => {
-    if (e.key === 'Enter') {
-      getArtist()
-    }
-  }
+  // const handleArtistKeypress = (e) => {
+  //   if (e.key === 'Enter') {
+  //     getArtist()
+  //   }
+  // }
   return (
     <div className="search-main">
       <div>
@@ -55,7 +55,7 @@ const SongSearch = () => {
         <button className="btn-search" onClick={getSong}>
           Search
         </button>
-        <input
+        {/* <input
           className="search-field"
           type="text"
           placeholder="search artists"
@@ -64,9 +64,9 @@ const SongSearch = () => {
         />
         <button className="btn-search" onClick={getArtist}>
           Search
-        </button>
+        </button> */}
         <hr />
-        {artists ? <img src={artists.thumbnails[1].url} /> : '' }
+        {/* {artists ? <img src={artists.thumbnails[1].url} /> : '' } */}
         {/* <div>
           {artists && artists.map(artist => (
             <img src={artist.thumbnails[1].url} />
