@@ -25,7 +25,7 @@ const SongSearch = () => {
         setArtists(data.content[0])
         console.log(data.content[0])
       })
-   }
+  }
 
   const songClick = (song) => {
     dispatch(setVideoId(song.videoId))
@@ -66,31 +66,31 @@ const SongSearch = () => {
           Search
         </button>
         <hr />
-        {artists ? <img src={artists.thumbnails[1].url} /> : '' }
+        {artists ? <img src={artists.thumbnails[1].url} /> : ''}
         {/* <div>
           {artists && artists.map(artist => (
             <img src={artist.thumbnails[1].url} />
           )) }         
         </div> */}
-        
+
         <div className="grid-container">
-        {songs && songs.map(song => (
-          <div className="grid-display">
-            <div className="search-container" key={song.id}  onClick={() => songClick(song)}>
-              <img className="search-img" src={song.thumbnails[0].url} />
+          {songs && songs.map(song => (
+            <div className="grid-display">
+              <div className="search-container" key={song.id} onClick={() => songClick(song)}>
+                <img className="search-img" src={song.thumbnails[0].url} />
                 <div className="search-name">
                   <h4>{song.artist.name}</h4>
                   <p>{song.name}</p>
                 </div>
+              </div>
             </div>
-          </div>
-          
-        ))}
-          </div>
+
+          ))}
+        </div>
       </div>
       <Player />
     </div>
-   );
+  );
 }
- 
+
 export default SongSearch;

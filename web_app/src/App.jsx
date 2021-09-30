@@ -31,6 +31,7 @@ function App() {
         <Route path="/search" component={SongSearch} />
         <Route path="/StartPage" exact component={StartPage} />
       </main>
+
     </Router>
 
   )

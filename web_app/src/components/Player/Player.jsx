@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 
 // TODO: Updatera så att Play/Pause knappen även kollar state på ifall spelaren är Aktiv! 
- 
+
 const Player = () => {
   const videoId = useSelector(state => state.videoId.videoId)
   const [player, setPlayer] = useState()
@@ -33,7 +33,7 @@ const Player = () => {
   const onPlayerStateChange = (event) => {
     if (event.data != YT.PlayerState.PLAYING) return
   }
-  
+
   const startSong = () => {
     player.loadVideoById(videoId)
   }
@@ -48,15 +48,17 @@ const Player = () => {
     }
   }
 
+
   return (
     <div>
       <div id="yt-player"></div>
       <div>
         <button onClick={playSong}>
-          { isActive ? 'Pause' : 'Play' }
+          {isActive ? 'Pause' : 'Play'}
         </button>
       </div>
     </div>
+
   )
 }
 

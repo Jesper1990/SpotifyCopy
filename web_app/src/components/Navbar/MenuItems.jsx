@@ -7,7 +7,7 @@ const MenuItems = [
 
   {
     title: 'Search',
-    url: '/Search',
+    url: '/search',
     cName: 'nav-links'
   },
 
