@@ -1,5 +1,5 @@
 .NavbarItems{
-  background: rgb(122,122,122);
+      background: rgb(122,122,122);
       background: linear-gradient(90deg, rgba(122,122,122,1) 19%, rgba(0,0,0,1) 100%);
      height: 70px;
      display: flex;
@@ -28,7 +28,7 @@
 }
 .nav-menu{
       display: grid;
-      grid-template-columns: repeat(5);
+      grid-template-columns: repeat(5,auto);
       grid-gap: 10px;
       list-style: none;
       text-align: right;
@@ -57,13 +57,13 @@
 }
 
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 700px) {
        .NavbarItems{
       position: relative;
             }
       .nav-menu{
              display: none;
-            background:  rgb(95, 90, 90);
+            /* background:  rgb(95, 90, 90); */
             left: 0;
             opacity: 1;
             transition: all 1.5s ease;
