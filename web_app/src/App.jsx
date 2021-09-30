@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar.jsx'
 import StartPage from './components/Pages/StartPage'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SongSearch from './components/SongSearch/SongSearch';
+import Artist from './components/ArtistPage/ArtistPage';
 
 
 
@@ -25,7 +26,7 @@ function App() {
 
       </div>
       <main>
-
+        <Route path = "/Artist" component={Artist} />
         <Route path="/register" component={Register} />
         <Route path="/" exact component={Start} />
         <Route path="/search" component={SongSearch} />
