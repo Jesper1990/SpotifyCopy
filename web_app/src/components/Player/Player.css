@@ -1,0 +1,47 @@
+.music-sticky {
+  display: flex;
+  background-color: #363636;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  justify-content: center;
+}
+.buttons {
+  display: block;
+}
+
+.list-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
+  list-style: none;
+}
+.list-link {
+  margin: 0px 10px 0px 10px;
+  background-color: rgb(26, 26, 26);
+  padding: 10px;
+  border-radius: 50%;
+}
+.list-play-pause {
+  margin: 0px 10px 0px 10px;
+  background-color: rgb(26, 26, 26);
+  padding: 15px;
+  border-radius: 50%;
+}
+.play-pause {
+  text-align: center;
+  font-size: 30px;
+  color: rgb(187, 187, 187);
+}
+.play-pause:hover {
+  color: white;
+}
+.fa-icon {
+  color: rgb(187, 187, 187);
+}
+.fa-icon:hover {
+  color: white;
+}

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { faBackward, faForward, faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
+import './Player.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 // TODO: Updatera så att Play/Pause knappen även kollar state på ifall spelaren är Aktiv! 
- 
+// TODO: Updatera spellistan så den kan starta från index inte från början!
+
 const Player = () => {
   const videoId = useSelector(state => state.videoId.videoId)
   const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
@@ -28,8 +32,8 @@ const Player = () => {
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
-      height: '400',
-      width: '400',
+      height: '0',
+      width: '0',
       events: {
         'onStateChange': onPlayerStateChange
       }
@@ -65,16 +69,26 @@ const Player = () => {
   }
 
   return (
-    <div>
+    <div className="music-sticky">
       <div id="yt-player"></div>
-      <div>
-        <button onClick={playSong}>
-          { isActive ? 'Pause' : 'Play' }
-        </button>
-        <button onClick={nextSong}>
-          Next
-        </button>
-        <button onClick={previousSong}>Previous</button>
+      <div className="buttons">
+        <ul className="list-buttons">
+          <li className="list-link" onClick={previousSong}>
+           
+              <FontAwesomeIcon className="fa-icon" icon={faBackward} />
+            
+          </li>
+          <li className="list-play-pause" onClick={playSong}>
+            
+              {isActive ? <FontAwesomeIcon className="play-pause" icon={faPause}/> : <FontAwesomeIcon className="play-pause" icon={faPlay} /> }
+            
+          </li>
+          <li className="list-link" onClick={nextSong}>         
+             
+              <FontAwesomeIcon className="fa-icon" icon={faForward} />
+            
+          </li>
+        </ul>
       </div>
     </div>
   )

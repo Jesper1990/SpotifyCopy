@@ -8,7 +8,7 @@
   width: 80%;
 }
 .search-field {
-  background-color: red;
+  background-color: white;
 }
 /* .btn-search {
 } */
@@ -21,8 +21,6 @@
   cursor: pointer;
   border: 1px solid white;
   margin-bottom: 4px;
-
-  /* width: 30%; */
 }
 .search-img {
   cursor: pointer;
