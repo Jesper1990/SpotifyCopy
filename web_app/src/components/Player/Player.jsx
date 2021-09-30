@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
  
 const Player = () => {
   const videoId = useSelector(state => state.videoId.videoId)
+  const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
   const [player, setPlayer] = useState()
   const [isActive, setIsActive] = useState(false)
 
@@ -18,6 +19,12 @@ const Player = () => {
       startSong(videoId)
     }
   }, [videoId])
+
+  useEffect(() => {
+    if (videoPlaylist) {
+      startPlaylist(videoPlaylist)
+    }
+  }, [videoPlaylist])
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
@@ -37,6 +44,9 @@ const Player = () => {
   const startSong = () => {
     player.loadVideoById(videoId)
   }
+  const startPlaylist = () => {    
+    player.loadPlaylist(videoPlaylist)
+  }
 
   const playSong = () => {
     if (!isActive) {
@@ -47,6 +57,12 @@ const Player = () => {
       player.pauseVideo()
     }
   }
+  const nextSong = () => {
+    player.nextVideo()
+  }
+  const previousSong = () => {
+    player.previousVideo()
+  }
 
   return (
     <div>
@@ -55,6 +71,10 @@ const Player = () => {
         <button onClick={playSong}>
           { isActive ? 'Pause' : 'Play' }
         </button>
+        <button onClick={nextSong}>
+          Next
+        </button>
+        <button onClick={previousSong}>Previous</button>
       </div>
     </div>
   )

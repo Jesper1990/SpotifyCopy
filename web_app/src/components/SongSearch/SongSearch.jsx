@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { setVideoPlaylist } from '../../redux/ducks/videoPlaylist';
 import { setVideoId } from '../../redux/ducks/videoId';
 import Player from '../Player/Player';
 import './SongSearch.css'
@@ -8,28 +9,22 @@ const SongSearch = () => {
   const dispatch = useDispatch()
   const [input, setInput] = useState('')
   const [songs, setSongs] = useState()
-  // const [artists, setArtists] = useState()
+  const [playlist, setPlaylist] = useState([])
+  const playlistId = [];
 
   const getSong = () => {
     fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${input}`)
       .then((res) => res.json())
       .then((data) => {
-        setSongs(data.content)
+        setSongs(data.content)       
+        data.content.forEach(element => playlistId.push(element.videoId))
+        setPlaylist(playlistId)
       })
   }
-  // const getArtist = () => {
-  //   fetch(`https://yt-music-api.herokuapp.com/api/yt/search/${input}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       // setArtists(data.content[0])
-  //       console.log(data.content)
-  //       console.log(data.content[0].thumbnails[1].url)
-  //     })
-  //  }
 
   const songClick = (song) => {
     dispatch(setVideoId(song.videoId))
-    console.log(song.artist.name);
+    dispatch(setVideoPlaylist(playlist))
   }
 
   const handleKeypress = (e) => {
@@ -37,11 +32,7 @@ const SongSearch = () => {
       getSong()
     }
   }
-  // const handleArtistKeypress = (e) => {
-  //   if (e.key === 'Enter') {
-  //     getArtist()
-  //   }
-  // }
+
   return (
     <div className="search-main">
       <div>
@@ -55,24 +46,8 @@ const SongSearch = () => {
         <button className="btn-search" onClick={getSong}>
           Search
         </button>
-        {/* <input
-          className="search-field"
-          type="text"
-          placeholder="search artists"
-          onChange={e => setInput(e.target.value)}
-          onKeyPress={handleArtistKeypress}
-        />
-        <button className="btn-search" onClick={getArtist}>
-          Search
-        </button> */}
         <hr />
-        {/* {artists ? <img src={artists.thumbnails[1].url} /> : '' } */}
-        {/* <div>
-          {artists && artists.map(artist => (
-            <img src={artist.thumbnails[1].url} />
-          )) }         
-        </div> */}
-        
+      
         <div className="grid-container">
         {songs && songs.map(song => (
           <div className="grid-display">
