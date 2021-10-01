@@ -26,7 +26,7 @@ function App() {
 
       </div>
       <main>
-        <Route path = "/Artist/:name" component={Artist} />
+        <Route path = "/Artist/:browseid" component={Artist} />
         <Route path="/register" component={Register} />
         <Route path="/" exact component={Start} />
         <Route path="/search" component={SongSearch} />

@@ -10,7 +10,7 @@ const SongSearch = () => {
   const [input, setInput] = useState('')
   const [songs, setSongs] = useState()
   const [artists, setArtists] = useState()
-  const [browseId, setBrowseId] = useState()
+ 
 
   const getSong = () => {
     fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${input}`)
@@ -23,16 +23,15 @@ const SongSearch = () => {
      fetch(`https://yt-music-api.herokuapp.com/api/yt/search/${input}`)
        .then((res) => res.json())
        .then((data) => {
-          setArtists(data.content)
-         console.log(data.content)
-         console.log(data.content[0].thumbnails[1].url)
+         const [artist] = data.content.filter(d => (d.type === "artist"))
+          setArtists([artist])
+         console.log(artist)
+
+        
        })
   }
 
-  // const artistClick = (artist) => {
-  //   setBrowseId(artist.browseId)
-  //   console.log(browseId)
-  // }
+  
 
   const songClick = (song) => {
     dispatch(setVideoId(song.videoId))
@@ -76,11 +75,15 @@ const SongSearch = () => {
         
          <div>
           {artists && artists.map(artist => (
-            <Link to ={`artist/${input}`}>
-              <img src={artist.thumbnails.url}/>
+            
+            <div className="search-result">
+              <Link to={`artist/${artist.browseId}`}>
+                <img src={artist.thumbnails[0]?.url} /> 
               <p>{artist.browseId}</p>
               </Link>
-          )) }         
+            </div>
+            
+          )) }
         </div>  
 
         <div className="grid-container">
