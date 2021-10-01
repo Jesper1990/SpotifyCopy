@@ -19,12 +19,14 @@ const SongSearch = () => {
         setSongs(data.content)       
         data.content.forEach(element => playlistId.push(element.videoId))
         setPlaylist(playlistId)
+        
       })
   }
 
   const songClick = (song) => {
     dispatch(setVideoId(song.videoId))
     dispatch(setVideoPlaylist(playlist))
+    // playlist.forEach((value, index) => console.log(`${index} : ${value}`))
   }
 
   const handleKeypress = (e) => {

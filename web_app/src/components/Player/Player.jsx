@@ -24,7 +24,9 @@ const Player = () => {
   // Startar spelaren med det specifika ID:t för låten man har klickat på.
   useEffect(() => {
     if (videoId) {
-      startSong(videoId)
+      startSong()
+      // Kalla på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
+      playSong()
     }
   }, [videoId])
 
@@ -32,13 +34,15 @@ const Player = () => {
   useEffect(() => {
     if (videoPlaylist) {
       startPlaylist(videoPlaylist)
+      // Kalla på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
+      playSong()
     }
   }, [videoPlaylist])
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
-      height: '0',
-      width: '0',
+      height: '400',
+      width: '400',
       events: {
         'onStateChange': onPlayerStateChange
       }
@@ -47,25 +51,35 @@ const Player = () => {
   }
   
   const onPlayerStateChange = (event) => {
-    if (event.data != YT.PlayerState.PLAYING) return
+    if (event.data != YT.PlayerState.PLAYING) {
+      return
+    }
   }
   
   const startSong = () => {
     player.loadVideoById(videoId)
+    console.log(player.getDuration());
   }
   // Funktion för att ladda spelaren med en spellista (en array utav ID:s som skickas via store.)
-  const startPlaylist = () => {    
+  const startPlaylist = () => {
     player.loadPlaylist(videoPlaylist)
+    // videoPlaylist.forEach((value) => player.cueVideoById(value))
+    // videoPlaylist.forEach((value) => console.log(value))
+    // player.cuePlaylist(videoPlaylist)
+    // videoPlaylist.forEach((value, index) => player.loadPlaylist(videoPlaylist, index))
+    // videoPlaylist.forEach((index) => console.log(index))
+    // videoPlaylist.forEach((value, index) => console.log(`${index} : ${value}`))
   }
+
   // Funktion för att ändra toggle på "Play / Pause" ikonerna
   const playSong = () => {
-    if (!isActive) {
+    if (player.getPlayerState() != 1) {
       setIsActive(true)
       player.playVideo()
-    } else {
+    } if (player.getPlayerState() == 1) {
       setIsActive(false)
       player.pauseVideo()
-    }
+    } 
   }
   // Funktion för knappen "Next"
   const nextSong = () => {
@@ -75,12 +89,16 @@ const Player = () => {
   const previousSong = () => {
     player.previousVideo()
   }
+  const testState = () => {
+    console.log(player.getPlayerState());
+  }
 
   return (
     <div className="music-sticky">
       <div id="yt-player"></div>
       <div className="buttons">
         <ul className="list-buttons">
+          <button onClick={testState}>Click for time!</button>
           <li className="list-link" onClick={previousSong}>          
               <FontAwesomeIcon className="fa-icon" icon={faBackward} />           
           </li>
@@ -89,8 +107,7 @@ const Player = () => {
               {isActive ? <FontAwesomeIcon className="play-pause" icon={faPause}/> : <FontAwesomeIcon className="play-pause" icon={faPlay} /> }          
           </li>
           <li className="list-link" onClick={nextSong}>                     
-              <FontAwesomeIcon className="fa-icon" icon={faForward} />
-            
+              <FontAwesomeIcon className="fa-icon" icon={faForward} />            
           </li>
         </ul>
       </div>
