@@ -6,6 +6,7 @@ import Start from './components/Start/Start';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SongSearch from './components/SongSearch/SongSearch';
+import Player from './components/Player/Player';
 
 
 
@@ -21,7 +22,8 @@ function App() {
 
       <Route path="/register" component={Register} />
       <Route path="/" exact component={Start} />
-      <Route path="/search" component={SongSearch}  />
+        <Route path="/search" component={SongSearch} />
+        <Player />
       </div>
       </Router>
      

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setVideoPlaylist } from '../../redux/ducks/videoPlaylist';
 import { setVideoId } from '../../redux/ducks/videoId';
-import Player from '../Player/Player';
+// import Player from '../Player/Player';
 import './SongSearch.css'
 
 const SongSearch = () => {
@@ -65,7 +65,7 @@ const SongSearch = () => {
         ))}
           </div>
       </div>
-      <Player />
+      {/* <Player /> */}
     </div>
    );
 }

@@ -22,13 +22,14 @@ const Player = () => {
   }, [])
 
   // Startar spelaren med det specifika ID:t för låten man har klickat på.
-  useEffect(() => {
-    if (videoId) {
-      startSong()
-      // Kalla på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
-      playSong()
-    }
-  }, [videoId])
+  // useEffect(() => {
+  //   if (videoId) {
+  //     startSong()
+  //     // Kalla på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
+  //     playSong()
+  //     // startPlaylist()
+  //   }
+  // }, [videoId])
 
   // Ej fullt funktionell då den nu alltid startar på första ID:t även om man klickar på någon annan.
   useEffect(() => {
@@ -41,10 +42,11 @@ const Player = () => {
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
-      height: '400',
-      width: '400',
+      height: '0',
+      width: '0',
       events: {
-        'onStateChange': onPlayerStateChange
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange,
       }
     })
     setPlayer(ytPlayer)
@@ -55,14 +57,22 @@ const Player = () => {
       return
     }
   }
-  
+  const onPlayerReady = (event) => {
+    if (event.data == YT.PlayerState.PLAYING) {
+      setVolume(event.target)
+    }
+  }
   const startSong = () => {
     player.loadVideoById(videoId)
-    console.log(player.getDuration());
+    // console.log(player.loadVideoById());
+    // console.log(player.loadVideoById().playerInfo);
+    // console.log(player.getDuration());
   }
   // Funktion för att ladda spelaren med en spellista (en array utav ID:s som skickas via store.)
   const startPlaylist = () => {
-    player.loadPlaylist(videoPlaylist)
+    player.loadPlaylist(videoPlaylist, player.getPlaylistIndex())
+    console.log(player.loadPlaylist());
+    // console.log(videoPlaylist + videoIndex);
     // videoPlaylist.forEach((value) => player.cueVideoById(value))
     // videoPlaylist.forEach((value) => console.log(value))
     // player.cuePlaylist(videoPlaylist)
@@ -89,8 +99,9 @@ const Player = () => {
   const previousSong = () => {
     player.previousVideo()
   }
-  const testState = () => {
-    console.log(player.getPlayerState());
+  const getTime = () => {
+    // console.log(player.getDuration());
+    console.log(player.getPlaylistIndex())
   }
 
   return (
@@ -98,7 +109,14 @@ const Player = () => {
       <div id="yt-player"></div>
       <div className="buttons">
         <ul className="list-buttons">
-          <button onClick={testState}>Click for time!</button>
+          <button onClick={getTime}>Console Duration</button>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            onChange={(e) => player.setVolume(e.target.value)}
+          />
           <li className="list-link" onClick={previousSong}>          
               <FontAwesomeIcon className="fa-icon" icon={faBackward} />           
           </li>
