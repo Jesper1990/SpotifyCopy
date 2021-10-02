@@ -17,6 +17,7 @@ const SongSearch = () => {
       .then((res) => res.json())
       .then((data) => {
         setSongs(data.content)
+        
       })
   }
    const getArtist = () => {
@@ -31,7 +32,6 @@ const SongSearch = () => {
        })
   }
 
-  
 
   const songClick = (song) => {
     dispatch(setVideoId(song.videoId))
@@ -79,7 +79,6 @@ const SongSearch = () => {
             <div className="search-result">
               <Link to={`artist/${artist.browseId}`}>
                 <img src={artist.thumbnails[0]?.url} /> 
-              <p>{artist.browseId}</p>
               </Link>
             </div>
             
