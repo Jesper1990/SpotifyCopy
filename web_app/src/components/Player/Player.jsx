@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { faBackward, faForward, faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faBackward, faForward, faPause, faPlay, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import './Player.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -16,6 +16,7 @@ const Player = () => {
   const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
   const [player, setPlayer] = useState()
   const [isActive, setIsActive] = useState(false)
+  const [isMuted, setIsMuted] = useState(false)
 
   useEffect(() => {
     loadPlayer()
@@ -103,20 +104,23 @@ const Player = () => {
     // console.log(player.getDuration());
     console.log(player.getPlaylistIndex())
   }
-
+  
   return (
     <div className="music-sticky">
       <div id="yt-player"></div>
       <div className="buttons">
         <ul className="list-buttons">
           <button onClick={getTime}>Console Duration</button>
+          <div className="volume-slider">
+            <span><FontAwesomeIcon className="fa-icon" icon={faVolumeMute} /> </span>
           <input
             type="range"
             min="0"
             max="100"
-            step="1"
             onChange={(e) => player.setVolume(e.target.value)}
-          />
+            />
+            <span><FontAwesomeIcon className="fa-icon" icon={faVolumeUp} /></span>
+          </div>
           <li className="list-link" onClick={previousSong}>          
               <FontAwesomeIcon className="fa-icon" icon={faBackward} />           
           </li>

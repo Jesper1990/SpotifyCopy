@@ -45,3 +45,30 @@
 .fa-icon:hover {
   color: white;
 }
+/* SLIDER CSS */
+
+.volume-slider {
+  display: flex;
+  width: 30%;
+  margin: auto;
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  background-color: rgb(26, 26, 26);
+  border: 1px solid rgb(58, 58, 58);
+  border-radius: 10px;
+  margin: auto;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border-radius: 30px;
+}
