@@ -16,7 +16,7 @@ const SongSearch = () => {
     fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${input}`)
       .then((res) => res.json())
       .then((data) => {
-        setSongs(data.content)       
+        setSongs(data.content)
         data.content.forEach(element => playlistId.push(element.videoId))
         setPlaylist(playlistId)
         
