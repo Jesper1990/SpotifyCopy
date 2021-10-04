@@ -7,6 +7,9 @@
   margin: auto;
   width: 80%;
 }
+input::placeholder {
+  color: #a3a3a3;
+}
 .search-field {
   background-color: white;
 }
