@@ -31,13 +31,13 @@ const Player = () => {
   }, [videoId])
 
   // Ej fullt funktionell då den nu alltid startar på första ID:t även om man klickar på någon annan.
-  // useEffect(() => {
-  //   if (videoPlaylist) {
-  //     startPlaylist(videoPlaylist)
-  //     // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
-  //     playSong()
-  //   }
-  // }, [videoPlaylist])
+  useEffect(() => {
+    if (videoPlaylist) {
+      startPlaylist(videoPlaylist)
+      // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
+      playSong()
+    }
+  }, [videoPlaylist])
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
@@ -69,17 +69,17 @@ const Player = () => {
     // console.log(player.getDuration());
   }
   // Funktion för att ladda spelaren med en spellista (en array utav ID:s som skickas via store.)
-  // const startPlaylist = () => {
-  //   player.loadPlaylist(videoPlaylist, player.getPlaylistIndex())
-  //   console.log(player.loadPlaylist());
-  //   // console.log(videoPlaylist + videoIndex);
-  //   // videoPlaylist.forEach((value) => player.cueVideoById(value))
-  //   // videoPlaylist.forEach((value) => console.log(value))
-  //   // player.cuePlaylist(videoPlaylist)
-  //   // videoPlaylist.forEach((value, index) => player.loadPlaylist(videoPlaylist, index))
-  //   // videoPlaylist.forEach((index) => console.log(index))
-  //   // videoPlaylist.forEach((value, index) => console.log(`${index} : ${value}`))
-  // }
+  const startPlaylist = () => {
+    player.loadPlaylist(videoPlaylist, player.getPlaylistIndex())
+    console.log(player.loadPlaylist());
+    // console.log(videoPlaylist + videoIndex);
+    // videoPlaylist.forEach((value) => player.cueVideoById(value))
+    // videoPlaylist.forEach((value) => console.log(value))
+    // player.cuePlaylist(videoPlaylist)
+    // videoPlaylist.forEach((value, index) => player.loadPlaylist(videoPlaylist, index))
+    // videoPlaylist.forEach((index) => console.log(index))
+    // videoPlaylist.forEach((value, index) => console.log(`${index} : ${value}`))
+  }
 
   // Funktion för att ändra toggle på "Play / Pause" ikonerna
   const playSong = () => {
@@ -104,9 +104,6 @@ const Player = () => {
     let minutes = Math.floor(time / 60)
     let seconds = Math.floor(time - minutes * 60)
     console.log(minutes + ':' + seconds);
-    // console.log(player.getDuration());
-    // console.log(player.getCurrentTime());
-    // console.log(player.getPlaylistIndex())
   }
   
   return (
