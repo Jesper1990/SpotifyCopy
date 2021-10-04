@@ -50,13 +50,14 @@ const SongSearch = () => {
   const handleKeypress = (e) => {
     if (e.key === 'Enter') {
       getSong()
+      getArtist()
     }
   }
-   const handleArtistKeypress = (e) => {
-     if (e.key === 'Enter') {
-       getArtist()
-     }
-   }
+  //  const handleArtistKeypress = (e) => {
+  //    if (e.key === 'Enter') {
+  //      getArtist()
+  //    }
+  //  }
   return (
     <div className="search-main">
       <div>
@@ -70,16 +71,16 @@ const SongSearch = () => {
         <button className="btn-search" onClick={getSong}>
           Search
         </button>
-         <input
+         {/* <input
           className="search-field"
           type="text"
           placeholder="search artists"
           onChange={e => setInput(e.target.value)}
-          onKeyPress={handleArtistKeypress}
+          onKeyPress={handleKeypress}
         />
         <button className="btn-search" onClick={getArtist}>
           Search
-        </button> 
+        </button>  */}
         <hr />
         
          <div>
