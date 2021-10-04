@@ -76,11 +76,12 @@
             background: linear-gradient(90deg, rgba(122,122,122,1) 20%, rgba(0,0,0,1) 100%);
             display:flex;
             flex-direction: column;
-            width:100%;
+            width:50%;
             height:400px;
             position:absolute;
             top: 70px;
             left: 0%;
+            right:20%;
             opacity: 1;
             transition: all 1.5s ease-out
       }
@@ -92,7 +93,8 @@
             
             text-align: center;
             padding: 2rem;
-            width: 100%;
+            width: 50%;
+            border-radius: 10px;
             display: table;
 
       }

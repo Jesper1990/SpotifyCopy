@@ -10,6 +10,7 @@ import SongSearch from './components/SongSearch/SongSearch';
 
 
 
+
 function App() {
 
   return (
@@ -22,7 +23,7 @@ function App() {
           <Link to="/register">Register</Link>
           <Link to="/search">Search</Link>
         </nav>
-
+        {/* <Player /> */}
       </div>
       <main>
 
