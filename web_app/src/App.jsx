@@ -13,18 +13,27 @@ import Artist from './components/ArtistPage/ArtistPage';
 
 
 
+
+
 function App() {
 
   return (
     <Router>
       <div className="App">
         <Navbar />
-        <Route path="/Artist/:browseid" component={Artist} />
-        <Route path="/register" component={Register} />
-        <Route path="/" exact component={Start} />
-        <Route path="/search" component={SongSearch} />
-        <Route path="/StartPage" exact component={StartPage} />
+        <main>
+          <Route path="/Artist/:browseid" component={Artist} />
+          <Route path="/register" component={Register} />
+          <Route path="/" exact component={Start} />
+          <Route path="/search" component={SongSearch} />
+          <Route path="/StartPage" exact component={StartPage} />
+        </main>
+        <br />
+
         <Player />
+
+
+
       </div>
 
     </Router>

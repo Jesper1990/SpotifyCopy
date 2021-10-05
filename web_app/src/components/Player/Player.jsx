@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { faPause, faPlay, faStepBackward, faStepForward, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import './Player.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PlayerContext } from '../../Contexts/PlayerContext';
+import Progressbar from '../Player/progressBar'
 
 
 // TODO: Updatera så att Play/Pause knappen även kollar state på ifall spelaren är Aktiv! 
@@ -17,6 +19,8 @@ const Player = () => {
   const [player, setPlayer] = useState()
   const [isActive, setIsActive] = useState(true)
   // const [progress, setProgress] = useState()
+  const [context, updateContext] = useState(PlayerContext)
+
 
 
 
@@ -57,6 +61,11 @@ const Player = () => {
     //   alert(player.getCurrentTime);
     // }
     setPlayer(ytPlayer)
+
+    //lägger till ytPlayer till context som var player: Null
+    updateContext({
+      player: ytPlayer
+    })
   }
 
   const onPlayerStateChange = (event) => {
@@ -133,6 +142,7 @@ const Player = () => {
           <li className="list-link" onClick={previousSong}>
             <FontAwesomeIcon className="fa-icon" icon={faStepBackward} />
           </li>
+          <Progressbar />
           <li className="list-play-pause" onClick={playSong}>
             {/* Toggle funktion för att ändra display på ikoner. ? = True, : = False. "Play" är default eftersom useState är satt till false default.  */}
             {isActive ? <FontAwesomeIcon className="play-pause" icon={faPause} /> : <FontAwesomeIcon className="play-pause" icon={faPlay} />}

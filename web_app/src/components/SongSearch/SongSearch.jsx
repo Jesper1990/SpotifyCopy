@@ -13,7 +13,7 @@ const SongSearch = () => {
   const [playlist, setPlaylist] = useState([])
   const playlistId = [];
   const [artists, setArtists] = useState()
- 
+
 
   const getSong = () => {
     fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${input}`)
@@ -22,22 +22,22 @@ const SongSearch = () => {
         setSongs(data.content)
         data.content.forEach(element => playlistId.push(element.videoId))
         setPlaylist(playlistId)
-        
+
       })
   }
-        
-      
-  
-   const getArtist = () => {
-     fetch(`https://yt-music-api.herokuapp.com/api/yt/search/${input}`)
-       .then((res) => res.json())
-       .then((data) => {
-         const [artist] = data.content.filter(d => (d.type === "artist"))
-          setArtists([artist])
-         console.log(artist)
 
-        
-       })
+
+
+  const getArtist = () => {
+    fetch(`https://yt-music-api.herokuapp.com/api/yt/search/${input}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const [artist] = data.content.filter(d => (d.type === "artist"))
+        setArtists([artist])
+        console.log(artist)
+
+
+      })
   }
 
 
@@ -51,6 +51,7 @@ const SongSearch = () => {
     if (e.key === 'Enter') {
       getSong()
       getArtist()
+      getPlaylist()
     }
   }
   //  const handleArtistKeypress = (e) => {
@@ -71,7 +72,7 @@ const SongSearch = () => {
         <button className="btn-search" onClick={getSong}>
           Search
         </button>
-         {/* <input
+        {/* <input
           className="search-field"
           type="text"
           placeholder="search artists"
@@ -82,18 +83,18 @@ const SongSearch = () => {
           Search
         </button>  */}
         <hr />
-        
-         <div>
+
+        <div>
           {artists && artists.map(artist => (
-            
+
             <div className="search-result">
               <Link to={`artist/${artist.browseId}`}>
-                <img src={artist.thumbnails[0]?.url} /> 
+                <img src={artist.thumbnails[0]?.url} />
               </Link>
             </div>
-            
-          )) }
-        </div>  
+
+          ))}
+        </div>
 
         <div className="grid-container">
           {songs && songs.map(song => (
