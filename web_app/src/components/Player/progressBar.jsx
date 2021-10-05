@@ -17,9 +17,9 @@ const Progressbar = () => {
       console.log('duration' + duration)
 
       let timelaps = (currentTime / duration) * 100;
-      console.log(timelaps);
+      console.log(timelaps)
       setProgress(timelaps)
-    }, 10000)
+    }, 1000)
     console.log(context.player)
 
   }, [context.player])

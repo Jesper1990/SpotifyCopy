@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { setVideoPlaylist } from '../../redux/ducks/videoPlaylist';
 import { setVideoId } from '../../redux/ducks/videoId';
+import { PlayerContext } from '../../Contexts/PlayerContext';
 // import Player from '../Player/Player';
 import './SongSearch.css'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -13,6 +14,7 @@ const SongSearch = () => {
   const [playlist, setPlaylist] = useState([])
   const playlistId = [];
   const [artists, setArtists] = useState()
+  const [context, updateContext] = useContext(PlayerContext)
 
 
   const getSong = () => {
@@ -44,6 +46,7 @@ const SongSearch = () => {
   const songClick = (song) => {
     dispatch(setVideoId(song.videoId))
     dispatch(setVideoPlaylist(playlist))
+    context.player.loadVideoById(song.videoId)
     // playlist.forEach((value, index) => console.log(`${index} : ${value}`))
   }
 
@@ -51,7 +54,7 @@ const SongSearch = () => {
     if (e.key === 'Enter') {
       getSong()
       getArtist()
-      getPlaylist()
+      // getPlaylist()
     }
   }
   //  const handleArtistKeypress = (e) => {

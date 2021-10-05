@@ -9,13 +9,13 @@ import store from './redux/configureStore'
 
 ReactDOM.render(
   <React.StrictMode>
-    <PlayerContextProvider>
-      <Provider store={store}>
 
+    <Provider store={store}>
+      <PlayerContextProvider>
         <App />
+      </PlayerContextProvider>
+    </Provider>
 
-      </Provider>
-    </PlayerContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
