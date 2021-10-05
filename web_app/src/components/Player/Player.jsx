@@ -20,6 +20,7 @@ const Player = () => {
   const [isActive, setIsActive] = useState(true)
   // const [progress, setProgress] = useState()
   const [context, updateContext] = useState(PlayerContext)
+  const [progress, setProgress] = useState(0)
 
 
 
@@ -27,6 +28,26 @@ const Player = () => {
   useEffect(() => {
     loadPlayer()
   }, [])
+
+  useEffect(() => {
+    if (!player) return
+    // if (player.getPlayerState() != 0) return
+    setInterval(() => {
+      let currentTime = player.getCurrentTime()
+      console.log('currenttime' + currentTime)
+
+      let duration = player.getDuration()
+      console.log('duration' + duration)
+
+      let timelaps = (currentTime / duration) * 100;
+      console.log(timelaps)
+
+      setProgress(timelaps)
+    }, 1000)
+    console.log('mhsdfkdf' + player)
+
+  }, [player])
+
 
   // Startar spelaren med det specifika ID:t för låten man har klickat på.
   // useEffect(() => {
@@ -37,14 +58,14 @@ const Player = () => {
   //   }
   // }, [videoId])
 
-  // // Ej fullt funktionell då den nu alltid startar på första ID:t även om man klickar på någon annan.
-  // useEffect(() => {
-  //   if (videoPlaylist) {
-  //     startPlaylist(videoPlaylist)
-  //     // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
-  //     playSong()
-  //   }
-  // }, [videoPlaylist])
+  // Ej fullt funktionell då den nu alltid startar på första ID:t även om man klickar på någon annan.
+  useEffect(() => {
+    if (videoPlaylist) {
+      startPlaylist(videoPlaylist)
+      // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
+      playSong()
+    }
+  }, [videoPlaylist])
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
@@ -117,10 +138,17 @@ const Player = () => {
     player.previousVideo()
   }
   const getTime = () => {
-    const time = Math.floor(player.getDuration())
-    let minutes = Math.floor(time / 60)
-    let seconds = Math.floor(time - minutes * 60)
-    console.log(minutes + ':' + seconds);
+    // const time = Math.floor(player.getDuration())
+    // let minutes = Math.floor(time / 60)
+    // let seconds = Math.floor(time - minutes * 60)
+    // console.log(minutes + ':' + seconds);
+    console.log(context.player.getCurrentTime())
+  }
+  const seekBar = (event) => {
+    console.log(player)
+    // setProgress(event.target.value)
+    // let seekBarTo = context.player.getDuration() / event.target.value
+    // context.player.seekTo(seekBarTo, true)
   }
 
   return (
@@ -142,7 +170,7 @@ const Player = () => {
           <li className="list-link" onClick={previousSong}>
             <FontAwesomeIcon className="fa-icon" icon={faStepBackward} />
           </li>
-          <Progressbar />
+          {/* <Progressbar /> */}
           <li className="list-play-pause" onClick={playSong}>
             {/* Toggle funktion för att ändra display på ikoner. ? = True, : = False. "Play" är default eftersom useState är satt till false default.  */}
             {isActive ? <FontAwesomeIcon className="play-pause" icon={faPause} /> : <FontAwesomeIcon className="play-pause" icon={faPlay} />}
@@ -150,7 +178,11 @@ const Player = () => {
           <li className="list-link" onClick={nextSong}>
             <FontAwesomeIcon className="fa-icon" icon={faStepForward} />
           </li>
-        </ul>
+
+        </ul><div>
+          <input className="progress" value={progress} onChange={seekBar} type="range" />
+        </div>
+        <Progressbar />
       </div>
     </div>
 

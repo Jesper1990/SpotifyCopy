@@ -46,15 +46,17 @@ const SongSearch = () => {
   const songClick = (song) => {
     dispatch(setVideoId(song.videoId))
     dispatch(setVideoPlaylist(playlist))
-    context.player.loadVideoById(song.videoId)
+    // console.log('test' + context.player)
+    // context.player.loadVideoById(song.videoId)
     // playlist.forEach((value, index) => console.log(`${index} : ${value}`))
+
   }
 
   const handleKeypress = (e) => {
     if (e.key === 'Enter') {
       getSong()
       getArtist()
-      // getPlaylist()
+      getPlaylist()
     }
   }
   //  const handleArtistKeypress = (e) => {
