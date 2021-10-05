@@ -17,7 +17,7 @@ const Register = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newUser),
     }).then(() => {
-      console.log('New user added');
+      console.log(newUser);
       
     });
   };
