@@ -1,42 +1,37 @@
-import axios from "axios";
 import React, { useState } from 'react';
 import './Register.css'
 
-function Register() {
-  const url = "http://localhost:8085/api/users"
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    password:""
-  })
 
-  function handle(e) {
-    const newdata = { ...data }
-    newdata[e.target.id] = e.target.value
-    setData(newdata)
-    console.log(newdata)
-  }
+const Register = () => {
+   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+ 
 
-  function submit(e) {
+   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(url, {
-      name: data.name,
-      email: data.email,
-      password: data.password
-    })
-      .then(res =>{
-      console.log(res.data)
-    })
+     const newUser = { name, email, password };
+     
+      fetch('http://localhost:8085/api/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newUser),
+    }).then(() => {
+      console.log('New user added');
+      
+    });
+  };
+
     
-  }
+  
 
   return (
     
     <div className = "container">
-      <form className="form-group" onSubmit={(e) => submit(e)}>
-        <input onChange={(e) => handle(e)} id="email" value={data.email} placeholder="@Email" type="text"></input>
-        <input onChange={(e)=>handle(e)} id="name" value={data.name} placeholder="Username" type="text"></input>
-        <input onChange={(e)=>handle(e)} id="password" value={data.password} placeholder="Password" type="text"></input>
+      <form className="form-group" onSubmit={handleSubmit}>
+        <input onChange={(e) => setEmail(e.target.value)} id="email" value={email} placeholder="@Email" type="text"></input>
+        <input onChange={(e) =>setName(e.target.value)} id="name" value={name} placeholder="Username" type="text"></input>
+        <input onChange={(e) =>setPassword(e.target.value)} id="password" value={password} placeholder="Password" type="text"></input>
         
         <button className="btn">Submit</button>
         <p>Already a member? Login now</p>
