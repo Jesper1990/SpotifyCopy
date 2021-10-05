@@ -24,9 +24,9 @@ public class MyUserDetailsService implements UserDetailsService {
    @PostConstruct
     private void createDefaultUsers(){
 
-       //if (userService.findByUsername("user") == null) {
+       if (userService.findByUsername("user") == null) {
             addUser("user", "password");
-        //}
+        }
     }
 
     @Override
