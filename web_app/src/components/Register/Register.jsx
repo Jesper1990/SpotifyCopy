@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import './Register.css'
 
 
@@ -34,7 +35,9 @@ const Register = () => {
         <input onChange={(e) =>setPassword(e.target.value)} id="password" value={password} placeholder="Password" type="text"></input>
         
         <button className="btn">Submit</button>
+        <Link to={`/loginPage`}>
         <p>Already a member? Login now</p>
+        </Link>
       </form>
       </div>
       
