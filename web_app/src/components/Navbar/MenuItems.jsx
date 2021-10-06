@@ -13,7 +13,7 @@ const MenuItems = [
 
   {
     title: 'Playlists',
-    url: '/PlayListPage',
+    url: '/Playlist',
     cName: 'nav-links'
   },
 

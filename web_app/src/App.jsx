@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SongSearch from './components/SongSearch/SongSearch';
 import Player from './components/Player/Player';
 import Artist from './components/ArtistPage/ArtistPage';
+import Playlist from './components/Playlist/Playlist';
 
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/search" component={SongSearch} />
         <Route path="/StartPage" exact component={StartPage} />
         <Route path="/Userlogin" exact component={Userlogin} />
+        <Route path="/Playlist" exact component={Playlist} />
         <Player />
       </div>
 
