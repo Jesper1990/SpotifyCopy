@@ -21,13 +21,13 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
-   @PostConstruct
+  /* @PostConstruct
     private void createDefaultUsers(){
 
        if (userService.findByUsername("user") == null) {
             addUser("user", "password");
         }
-    }
+    }*/
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -38,8 +38,8 @@ public class MyUserDetailsService implements UserDetailsService {
         return toUserDetails(user);
     }
 
-    public User addUser(String username, String password){
-        User user = new User(username, encoder.encode(password));
+    public User addUser(User newUser){
+        User user = new User(newUser.getUsername(), encoder.encode(newUser.getPassword()));
         try {
             return userService.addUser(user);
         } catch (Exception ex) {

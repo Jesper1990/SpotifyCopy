@@ -1,54 +1,44 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import './Register.css'
 
-function Register () {
-  const url = 'http://localhost:8085/api/users'
-  const [data, setData] = useState({
-    name: '',
-    //email: "",
-    password: ''
-  })
+const Register = () => {
+  const [username, setUsername] = useState('')
 
-  function handle (e) {
-    const newdata = { ...data }
-    newdata[e.target.id] = e.target.value
-    setData(newdata)
-    console.log(newdata)
-  }
+  const [password, setPassword] = useState('')
 
-  function submit (e) {
+  const handleSubmit = e => {
     e.preventDefault()
-    axios
-      .post(url, {
-        name: data.username,
-        //email: data.email,
-        password: data.password
-      })
-      .then(res => {
-        console.log(res.data)
-      })
+    const newUser = { username, password }
+
+    fetch('http://localhost:4000/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newUser)
+    }).then(() => {
+      console.log(newUser)
+    })
   }
 
   return (
     <div className='container'>
-      <form className='form-group' onSubmit={e => submit(e)}>
+      <form className='form-group' onSubmit={handleSubmit}>
         <input
-          onChange={e => handle(e)}
+          onChange={e => setUsername(e.target.value)}
           id='name'
-          value={data.username}
+          value={username}
           placeholder='Username'
           type='text'
         ></input>
         <input
-          onChange={e => handle(e)}
+          onChange={e => setPassword(e.target.value)}
           id='password'
-          value={data.password}
+          value={password}
           placeholder='Password'
           type='password'
         ></input>
 
-        <button className='btn'>Login</button>
+        <button className='btn'>Register</button>
+        <br />
         <p>Already a member? Login now</p>
       </form>
     </div>
