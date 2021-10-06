@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SongSearch from './components/SongSearch/SongSearch';
 import Player from './components/Player/Player';
 import Artist from './components/ArtistPage/ArtistPage';
-import Progressbar from './components/Player/progressBar'
+// import Progressbar from './components/Player/progressBar'
 
 
 
@@ -22,7 +22,7 @@ function App() {
       <div className="App">
         <Navbar />
         <main>
-          <Progressbar />
+          {/* <Progressbar /> */}
           <Route path="/Artist/:browseid" component={Artist} />
           <Route path="/register" component={Register} />
           <Route path="/" exact component={Start} />

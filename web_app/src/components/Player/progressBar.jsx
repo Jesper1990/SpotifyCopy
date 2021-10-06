@@ -12,13 +12,13 @@ const Progressbar = () => {
     // if (player.getPlayerState() != 0) return
     setInterval(() => {
       let currentTime = context.player.getCurrentTime()
-      console.log('currenttime' + currentTime)
+      // console.log('currenttime' + currentTime)
 
       let duration = context.player.getDuration()
-      console.log('duration' + duration)
+      // console.log('duration' + duration)
 
       let timelaps = (currentTime / duration) * 100;
-      console.log(timelaps)
+      // console.log(timelaps)
 
       setProgress(timelaps)
     }, 1000)

@@ -21,9 +21,10 @@ const Player = () => {
   // const [progress, setProgress] = useState()
   const [context, updateContext] = useState(PlayerContext)
   const [progress, setProgress] = useState(0)
-
-
-
+  const [seconds, setSeconds] = useState(0)
+  const [minutes, setMinutes] = useState(0)
+  const [minutesDuration, setMinutesDuration] = useState(0)
+  const [secondsDuration, setSecondsDuration] = useState(0)
 
   useEffect(() => {
     loadPlayer()
@@ -32,19 +33,18 @@ const Player = () => {
   useEffect(() => {
     if (!player) return
     // if (player.getPlayerState() != 0) return
+
     setInterval(() => {
       let currentTime = player.getCurrentTime()
-      console.log('currenttime' + currentTime)
-
       let duration = player.getDuration()
-      console.log('duration' + duration)
-
-      let timelaps = (currentTime / duration) * 100;
-      console.log(timelaps)
+      let timelaps = Math.floor((currentTime / duration) * 100);
 
       setProgress(timelaps)
+      getTime()
+      getTimeDuration()
+
     }, 1000)
-    console.log('mhsdfkdf' + player)
+
 
   }, [player])
 
@@ -97,6 +97,7 @@ const Player = () => {
   const onPlayerReady = (event) => {
     if (event.data == YT.PlayerState.PLAYING) {
       setVolume(event.target)
+      seekTo(event.target, true)
 
     }
   }
@@ -138,17 +139,29 @@ const Player = () => {
     player.previousVideo()
   }
   const getTime = () => {
-    // const time = Math.floor(player.getDuration())
-    // let minutes = Math.floor(time / 60)
-    // let seconds = Math.floor(time - minutes * 60)
-    // console.log(minutes + ':' + seconds);
-    console.log(context.player.getCurrentTime())
+    const time = Math.floor(player.getCurrentTime())
+    let minutes = Math.floor(time / 60)
+    let seconds = Math.floor(time - minutes * 60)
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    setMinutes(minutes)
+    setSeconds(seconds)
+
   }
-  const seekBar = (event) => {
-    console.log(player)
-    // setProgress(event.target.value)
-    // let seekBarTo = context.player.getDuration() / event.target.value
-    // context.player.seekTo(seekBarTo, true)
+  const getTimeDuration = () => {
+    const time = Math.floor(player.getDuration())
+    let minutes = Math.floor(time / 60)
+    let seconds = Math.floor(time - minutes * 60)
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    setMinutesDuration(minutes)
+    setSecondsDuration(seconds)
+    // console.log(context.player.getCurrentTime())
+  }
+  const seekBar = (e) => {
+    if (player.getPlayerState() == 1) {
+      setProgress(e.target.value)
+      let seekBarTo = player.getDuration() * (e.target.value / 100)
+      player.seekTo(seekBarTo, true)
+    }
   }
 
   return (
@@ -170,7 +183,7 @@ const Player = () => {
           <li className="list-link" onClick={previousSong}>
             <FontAwesomeIcon className="fa-icon" icon={faStepBackward} />
           </li>
-          {/* <Progressbar /> */}
+
           <li className="list-play-pause" onClick={playSong}>
             {/* Toggle funktion för att ändra display på ikoner. ? = True, : = False. "Play" är default eftersom useState är satt till false default.  */}
             {isActive ? <FontAwesomeIcon className="play-pause" icon={faPause} /> : <FontAwesomeIcon className="play-pause" icon={faPlay} />}
@@ -179,13 +192,17 @@ const Player = () => {
             <FontAwesomeIcon className="fa-icon" icon={faStepForward} />
           </li>
 
-        </ul><div>
+        </ul>
+        <div className="progress-div">
+          <p>{minutes}:{seconds}</p>
           <input className="progress" value={progress} onChange={seekBar} type="range" />
+          <p>{minutesDuration}:{secondsDuration}</p>
+          <div>
+          </div>
+
         </div>
-        <Progressbar />
       </div>
     </div>
-
   )
 }
 
