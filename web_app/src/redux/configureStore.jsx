@@ -1,10 +1,12 @@
 import { combineReducers, createStore } from 'redux';
 import videoId from './ducks/videoId';
 import videoPlaylist from './ducks/videoPlaylist';
+import videoPlayer from './ducks/videoPlayer'
 
 const reducer = combineReducers({
   videoId: videoId,
   videoPlaylist: videoPlaylist,
+  videoPlayer: videoPlayer,
 });
 
 const store = createStore(reducer)
