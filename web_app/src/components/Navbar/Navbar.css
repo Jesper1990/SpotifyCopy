@@ -1,11 +1,12 @@
 .NavbarItems{
       background: rgb(122,122,122);
-      background: linear-gradient(90deg, rgba(122,122,122,1) 19%, rgba(0,0,0,1) 100%);
+      background: linear-gradient(90deg, rgba(122,122,122,1) 19%, rgb(63, 62, 62) 100%);
      height: 70px;
      display: flex;
      justify-content: center;
      align-items: center;
      font-size:1.2rem;
+     
 
 }
 
@@ -25,6 +26,7 @@
       color:#008a18
 }
 .fa-bars{
+ 
       color: #008a18;
 }
 .nav-menu{
@@ -32,7 +34,7 @@
       grid-template-columns: repeat(5,auto);
       grid-gap: 10px;
       list-style: none;
-      text-align: right;
+      text-align: center;/* put right i center is bad*/
       width: 70vw;
       justify-content: end;
       margin-left : 2rem;
@@ -54,7 +56,7 @@
 }
 
 .menu-icon{
-      display: none;
+           display: none;
 }
 
 
@@ -62,39 +64,43 @@
        .NavbarItems{
       position: relative;
             }
-            ul.nav-menu{
-                  /* display: none; */
-            }
+            
       .nav-menu{
+            display:flex;
+            flex-direction: column;
+            width: 100%;
+            height:500px;
+            position: absolute;
+            top:70px;
              /* display: none; */
              /* display:hidden;   */
             /* background:  rgb(95, 90, 90); */
-            /* left: 100%; */
+            left: -100%;
             opacity: 0;
-            /* transition: all .5s ease; */
+            transition: all 0.5s ease;
             z-index: 1;
+            
           
       }
 
-      .act {
-            list-style: none;
-            display: hidden;
-            background:  rgba(0,0,0,1);
+      .nav-menu.act {
+            /* list-style: none; */
+            /* display: hidden; */
+            background:  #343434;
             display:flex;
             flex-direction: column;
-            width:50%;
-            height:300px;
+            width:100%;
+            height:400px;
             position:absolute;
             top: 70px;
             left: -7%;
             /* right:200%; */
             opacity: 1;
             transition: all 0.5s ease-out;
+           
       }
 
-      /* .testdiv{
-            background:  rgb(95, 90, 90);
-      } */
+     
       .nav-links{
             
             text-align: center;
@@ -124,7 +130,7 @@
       }
       .menu-icon{
             display:flex;
-            justify-self: end;
+            justify-self: flex-start;
             position:absolute;
             top:0;
             right:0;
@@ -134,3 +140,4 @@
 
       }
 }
+
