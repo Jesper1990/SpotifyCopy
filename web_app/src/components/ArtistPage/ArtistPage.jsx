@@ -46,7 +46,7 @@ function Artist() {
 
     
 
-           <h1>{artists && artists.name}</h1>
+           <h1 className="artist-name">{artists && artists.name}</h1>
       <p>{artists && artists.description}</p>
 
       <h3 className="songs-title">Most popular songs!</h3>
@@ -85,8 +85,6 @@ function Artist() {
       ))}</div>
       
       
-      
-       http://localhost:3000/artist/{browseid}
       
      
       {popup && (
