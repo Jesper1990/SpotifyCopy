@@ -1,47 +1,48 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
 import './Register.css'
 
-
 const Register = () => {
-   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
- 
+  const [username, setUsername] = useState('')
 
-   const handleSubmit = (e) => {
-    e.preventDefault();
-     const newUser = { name, email, password };
-     
-      fetch('http://localhost:8085/api/users', {
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    const newUser = { username, password }
+
+    fetch('http://localhost:4000/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newUser),
+      body: JSON.stringify(newUser)
     }).then(() => {
-      console.log(newUser);
-      
-    });
-  };
-
-    
-  
+      console.log(newUser)
+    })
+  }
 
   return (
-    
-    <div className = "container">
-      <form className="form-group" onSubmit={handleSubmit}>
-        <input onChange={(e) => setEmail(e.target.value)} id="email" value={email} placeholder="@Email" type="text"></input>
-        <input onChange={(e) =>setName(e.target.value)} id="name" value={name} placeholder="Username" type="text"></input>
-        <input onChange={(e) =>setPassword(e.target.value)} id="password" value={password} placeholder="Password" type="text"></input>
-        
-        <button className="btn">Submit</button>
-        <Link to={`/loginPage`}>
+    <div className='container'>
+      <form className='form-group' onSubmit={handleSubmit}>
+        <input
+          onChange={e => setUsername(e.target.value)}
+          id='name'
+          value={username}
+          placeholder='Username'
+          type='text'
+        ></input>
+        <input
+          onChange={e => setPassword(e.target.value)}
+          id='password'
+          value={password}
+          placeholder='Password'
+          type='password'
+        ></input>
+
+        <button className='btn'>Register</button>
+        <br />
         <p>Already a member? Login now</p>
-        </Link>
       </form>
-      </div>
-      
-  );
+    </div>
+  )
 }
 
-export default Register;
+export default Register

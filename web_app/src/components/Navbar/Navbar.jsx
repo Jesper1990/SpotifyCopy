@@ -5,8 +5,14 @@ import '../Navbar/Navbar.css';
 
 
 
-
 function Navbar() {
+
+
+    function logout() {
+      fetch('/logout')
+    }
+
+
   const [isOpen, setIsOpen] = useState(false);
   return (
 
@@ -28,6 +34,9 @@ function Navbar() {
 
           )
         })}
+        <li>
+          <button onClick={logout}>Logout</button>
+        </li>
       </ul>
       {/* </div> */}
 
