@@ -24,7 +24,6 @@ const SongSearch = () => {
         setSongs(data.content)
         data.content.forEach(element => playlistId.push(element.videoId))
         setPlaylist(playlistId)
-
       })
   }
 
@@ -37,8 +36,6 @@ const SongSearch = () => {
         const [artist] = data.content.filter(d => (d.type === "artist"))
         setArtists([artist])
         console.log(artist)
-
-
       })
   }
 
@@ -59,11 +56,10 @@ const SongSearch = () => {
       getPlaylist()
     }
   }
-  //  const handleArtistKeypress = (e) => {
-  //    if (e.key === 'Enter') {
-  //      getArtist()
-  //    }
-  //  }
+  const buttonClick = () => {
+    getSong()
+    getArtist()
+  }
   return (
     <div className="search-main">
       <div>
@@ -74,19 +70,9 @@ const SongSearch = () => {
           onChange={e => setInput(e.target.value)}
           onKeyPress={handleKeypress}
         />
-        <button className="btn-search" onClick={getSong}>
+        <button className="btn-search" onClick={buttonClick}>
           Search
         </button>
-        {/* <input
-          className="search-field"
-          type="text"
-          placeholder="search artists"
-          onChange={e => setInput(e.target.value)}
-          onKeyPress={handleKeypress}
-        />
-        <button className="btn-search" onClick={getArtist}>
-          Search
-        </button>  */}
         <hr />
 
         <div>
@@ -115,9 +101,9 @@ const SongSearch = () => {
 
           ))}
         </div>
-      </div>
+      </div >
       {/* <Player /> */}
-    </div>
+    </div >
   );
 }
 

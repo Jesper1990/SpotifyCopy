@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './App.css'
 /*import GetUsers from './components/services/getUsers' */
 import Register from './components/Register/Register'
+import Userlogin from './components/Userlogin/Userlogin'
 import Start from './components/Start/Start';
 import Navbar from './components/Navbar/Navbar.jsx'
 import StartPage from './components/Pages/StartPage'
@@ -12,6 +13,7 @@ import Artist from './components/ArtistPage/ArtistPage';
 // import Progressbar from './components/Player/progressBar'
 
 
+import Playlist from './components/Playlist/Playlist';
 
 
 
@@ -21,16 +23,13 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        <main>
-          {/* <Progressbar /> */}
-          <Route path="/Artist/:browseid" component={Artist} />
-          <Route path="/register" component={Register} />
-          <Route path="/" exact component={Start} />
-          <Route path="/search" component={SongSearch} />
-          <Route path="/StartPage" exact component={StartPage} />
-        </main>
-        <br />
-
+        <Route path="/Artist/:browseid" component={Artist} />
+        <Route path="/register" exact component={Register} />
+        <Route path="/" exact component={Start} />
+        <Route path="/search" component={SongSearch} />
+        <Route path="/StartPage" exact component={StartPage} />
+        <Route path="/Userlogin" exact component={Userlogin} />
+        <Route path="/Playlist" exact component={Playlist} />
         <Player />
 
 
