@@ -38,24 +38,66 @@ function Artist() {
   
   return (
     <div>
+
+      
+
+      <button onClick={togglePopup} className="btn-popup">Share Artist with a Link!</button>
+
+
+    
+
            <h1>{artists && artists.name}</h1>
       <p>{artists && artists.description}</p>
-      <div>{artists && artists.products.albums.content.map(album => (
-        <div> {album.thumbnails[0].url} </div>
-        
-      ))}</div>
-      <p>{artists && artists.products.songs.content.map(song=> (
-        <div>{song.name}</div>
-      ))}</p>
+
+      <h3 className="songs-title">Most popular songs!</h3>
+
+        <div className="grid-container">
+          {artists && artists.products.singles.content.map(song => (
+            <div className="grid-display">
+              <div className="song-container">
+                <img className="song-pic" src={song.thumbnails[0].url} />
+                <div className="song-name">
+                  <h4>{song.name}</h4>
+                </div>
+              </div>
+            </div>
+
+          ))}
+        </div>
       
-       
-      <button onClick={togglePopup} className="btn-popup">Share Artist with a Link!</button>
+       {/* <div>{artists && artists.products.singles.content.map(song => (
+        <ul>
+        <li>
+          {song.name}
+        <img className="song-pic" src = {song.thumbnails[0].url}></img>
+          </li>
+          </ul>
+           
+        
+      ))}</div> */}
+
+      <h3 className="albums-title">Albums!</h3>
+      <div>{artists && artists.products.albums.content.map(album => (
+        <div>
+          <p>{album.name}</p>
+          <img src = {album.thumbnails[0].url}></img>
+        </div>
+      ))}</div>
+      
+      
+      
+       http://localhost:3000/artist/{browseid}
+      
      
       {popup && (
         <div className="popup">
         <div className="overlay"></div>
         <div className="popup-content">
-            <h2>http://localhost:3000/artist/{browseid}</h2>
+
+            <input
+              type="text"
+              placeholder={`http://localhost:3000/artist/${browseid}`}
+            />
 
             <button onClick={() => navigator.clipboard.writeText(`http://localhost:3000/artist/${browseid}`)} >
             Copy Link!

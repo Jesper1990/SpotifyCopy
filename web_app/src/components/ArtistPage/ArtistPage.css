@@ -1,3 +1,73 @@
+ .songs-title{
+     text-align: left;
+ }
+
+ .grid-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.song-container {
+  display: flex;
+  cursor: pointer;
+ 
+  margin-bottom: 4px;
+}
+.song-pic {
+     width: 60px;
+     height: 60px;
+  cursor: pointer;
+  padding: 4px 4px 4px 4px;
+}
+.song-name {
+  align-self: center;
+}
+.song-name > h4
+ {
+     color: #a3a3a3;
+  text-align: left;
+}
+
+@media (max-width: 1000px) {
+
+    .songs-title{
+     text-align: center;
+ }
+
+ .grid-container {
+  display: grid;
+  grid-template-columns: 100%;
+}
+.song-container {
+  display: flex;
+  cursor: pointer;
+ 
+  margin-bottom: 4px;
+}
+.song-pic {
+     width: 60px;
+     height: 60px;
+  cursor: pointer;
+  padding: 4px 4px 4px 4px;
+}
+.song-name {
+  align-self: center;
+}
+.song-name > h4
+ {
+     color: #a3a3a3;
+  text-align: left;
+}
+    
+}
+
+ 
+ 
+ 
+
+
+
+ /*modal nedanför */
+ 
  body.active-popup {
     overflow-y: hidden;
 }
@@ -9,7 +79,7 @@
     font-size: 18px;
 }
 
-/* .popup, .overlay {
+ .popup, .overlay {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -40,4 +110,6 @@
     top: 10px;
     right: 10px;
     padding: 5px 7px;
-}  */
+}  
+
+
