@@ -13,7 +13,7 @@ const MenuItems = [
 
   {
     title: 'Playlists',
-    url: '/PlayListPage',
+    url: '/Playlist',
     cName: 'nav-links'
   },
 
@@ -24,7 +24,12 @@ const MenuItems = [
   },
   {
     title: 'Login',
-    url: '/loginPage',
+    url: '/Userlogin',
+    cName: 'nav-links-mobile'
+  },
+  {
+    title: 'Register',
+    url: '/register',
     cName: 'nav-links-mobile'
   },
 

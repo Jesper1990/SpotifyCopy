@@ -1,5 +1,6 @@
 package com.group3.spotifycopy.dao;
 
+import com.group3.spotifycopy.models.User;
 import com.group3.spotifycopy.models.dto.UserDTO;
 import com.group3.spotifycopy.repository.UserRepository;
 import org.springframework.stereotype.Repository;
@@ -33,4 +34,7 @@ public class UserDAO {
     public void deleteAllUsers() {
         repository.deleteAll();
     }
+
+    public UserDTO findByUsername(String username) { return repository.findByUsername(username); }
+
 }

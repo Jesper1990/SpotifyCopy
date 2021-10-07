@@ -1,9 +1,12 @@
 package com.group3.spotifycopy.services;
 
+import com.group3.spotifycopy.configs.MyUserDetailsService;
 import com.group3.spotifycopy.dao.UserDAO;
 import com.group3.spotifycopy.models.User;
 import com.group3.spotifycopy.models.dto.UserDTO;
+import com.group3.spotifycopy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +21,23 @@ public class UserService {
     public UserService(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
+
+   /* @Autowired
+    private UserRepository userRepo;*/
+
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
+    public User findCurrentUser() {
+        // the login session is stored between page reloads,
+        // and we can access the current authenticated user with this
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return mapToUser(userDAO.findByUsername(username));
+    }
+
+    /*public User registerUser(User user) {
+        return myUserDetailsService.addUser(user.getUsername(), user.getPassword());
+    }*/
 
     public User addUser(User user) {
         UserDTO newUserDTO = userDAO.addUser(mapFromUser(user));
@@ -52,8 +72,7 @@ public class UserService {
         User userToUpdate = getUserById(id);
 
         if (userToUpdate != null) {
-            userToUpdate.setName(user.getName());
-            userToUpdate.setEmail(user.getEmail());
+            userToUpdate.setUsername(user.getUsername());
             userToUpdate.setPassword(user.getPassword());
         } else {
             userToUpdate.setId(id);
@@ -63,11 +82,15 @@ public class UserService {
     }
 
     public UserDTO mapFromUser(User user) {
-        return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getPassword());
+        return new UserDTO(user.getId(), user.getUsername(), user.getPassword());
     }
 
     public User mapToUser(UserDTO userDTO) {
-        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail(), userDTO.getPassword());
+        return new User(userDTO.getId(), userDTO.getUsername(), userDTO.getPassword());
+    }
+
+    public User findByUsername(String username) {
+            return mapToUser(userDAO.findByUsername(username));
     }
 
 }
