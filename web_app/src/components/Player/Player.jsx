@@ -1,19 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { faPause, faPlay, faStepBackward, faStepForward, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import './Player.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PlayerContext } from '../../Contexts/PlayerContext';
-import Progressbar from '../Player/progressBar'
+import { setVideoPlayer } from '../../redux/ducks/videoPlayer';
 
 
 // TODO: Updatera så att Play/Pause knappen även kollar state på ifall spelaren är Aktiv! 
 // TODO: Updatera spellistan så den kan starta från index inte från början!
 
 const Player = () => {
+  const dispatch = useDispatch()
   // State på 1 specifikt ID som skickas via onClick i sökfunktionen.
   const videoId = useSelector(state => state.videoId.videoId)
-
   // State på en Array utav ID:s som skickas via onClick i sökfunktionen, skall separeras för bättre funktionalitet.
   const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
   const [player, setPlayer] = useState()
@@ -87,6 +86,7 @@ const Player = () => {
     updateContext({
       player: ytPlayer
     })
+    dispatch(setVideoPlayer(ytPlayer))
   }
 
   const onPlayerStateChange = (event) => {
@@ -131,7 +131,11 @@ const Player = () => {
     }
   }
   // Funktion för knappen "Next"
+  // currentSongindex +1
+  // setVideo on next index
+  // previousVideo -1
   const nextSong = () => {
+    // startSong(videoIndex)
     player.nextVideo()
   }
   // Funktion för knappen "Previous"

@@ -1,11 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { setVideoPlaylist } from '../../redux/ducks/videoPlaylist';
+// import { setVideoPlaylist } from '../../redux/ducks/videoPlaylist';
 import { setVideoId } from '../../redux/ducks/videoId';
-import { PlayerContext } from '../../Contexts/PlayerContext';
-// import Player from '../Player/Player';
 import './SongSearch.css'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const SongSearch = () => {
   const dispatch = useDispatch()
@@ -14,7 +13,7 @@ const SongSearch = () => {
   const [playlist, setPlaylist] = useState([])
   const playlistId = [];
   const [artists, setArtists] = useState()
-  const [context, updateContext] = useContext(PlayerContext)
+  const videoPlayer = useSelector(state => state.videoPlayer.videoPlayer)
 
 
   const getSong = () => {
@@ -35,18 +34,26 @@ const SongSearch = () => {
       .then((data) => {
         const [artist] = data.content.filter(d => (d.type === "artist"))
         setArtists([artist])
-        console.log(artist)
+        //  console.log(artist)
       })
   }
 
-
-  const songClick = (song) => {
+  // currentSongIndex state on clicked index
+  // ignore videoPlaylist
+  // when nextbutton is clicked, retrieve new videoId from index.
+  const songClick = (song, i) => {
     dispatch(setVideoId(song.videoId))
-    dispatch(setVideoPlaylist(playlist))
-    // console.log('test' + context.player)
-    // context.player.loadVideoById(song.videoId)
+    // dispatch(setVideoPlaylist(playlist))
+    console.log(`${song.videoId} : ${i}`)
+    // console.log(videoPlayer);
     // playlist.forEach((value, index) => console.log(`${index} : ${value}`))
 
+  }
+
+  const testNext = (song, i) => {
+    // videoPlayer.nextVideo()
+    console.log(videoPlayer);
+    console.log(`${song.videoId} : ${i}`)
   }
 
   const handleKeypress = (e) => {
@@ -88,9 +95,10 @@ const SongSearch = () => {
         </div>
 
         <div className="grid-container">
-          {songs && songs.map(song => (
+          <button onClick={testNext}>Test next</button>
+          {songs && songs.map((song, i) => (
             <div className="grid-display">
-              <div className="search-container" key={song.id} onClick={() => songClick(song)}>
+              <div className="search-container" key={song.id} onClick={() => songClick(song, i)}>
                 <img className="search-img" src={song.thumbnails[0].url} />
                 <div className="search-name">
                   <h4>{song.artist.name}</h4>
@@ -101,9 +109,8 @@ const SongSearch = () => {
 
           ))}
         </div>
-      </div >
-      {/* <Player /> */}
-    </div >
+      </div>
+    </div>
   );
 }
 
