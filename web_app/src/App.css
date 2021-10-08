@@ -1,6 +1,7 @@
 body {
   background-color: #363636;
   min-height: 100vh;
+  margin-bottom: 120px;
 }
 
 * {
