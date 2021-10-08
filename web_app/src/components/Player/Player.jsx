@@ -4,6 +4,7 @@ import { faPause, faPlay, faStepBackward, faStepForward, faVolumeMute, faVolumeU
 import './Player.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setVideoPlayer } from '../../redux/ducks/videoPlayer';
+import Progressbar from '../Player/progressBar'
 
 
 // TODO: Updatera så att Play/Pause knappen även kollar state på ifall spelaren är Aktiv! 
@@ -17,31 +18,11 @@ const Player = () => {
   const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
   const [player, setPlayer] = useState()
   const [isActive, setIsActive] = useState(true)
-  const [progress, setProgress] = useState(0)
-  const [seconds, setSeconds] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const [minutesDuration, setMinutesDuration] = useState(0)
-  const [secondsDuration, setSecondsDuration] = useState(0)
 
   useEffect(() => {
     loadPlayer()
   }, [])
 
-  useEffect(() => {
-    if (!player) return
-    setInterval(() => {
-      let currentTime = player.getCurrentTime()
-      let duration = player.getDuration()
-      let timelaps = Math.floor((currentTime / duration) * 100);
-
-      setProgress(timelaps)
-      getTime()
-      getTimeDuration()
-
-    }, 1000)
-
-
-  }, [player])
 
 
   // Startar spelaren med det specifika ID:t för låten man har klickat på.
@@ -132,38 +113,14 @@ const Player = () => {
   const previousSong = () => {
     player.previousVideo()
   }
-  const getTime = () => {
-    const time = Math.floor(player.getCurrentTime())
-    let minutes = Math.floor(time / 60)
-    let seconds = Math.floor(time - minutes * 60)
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    setMinutes(minutes)
-    setSeconds(seconds)
 
-  }
-  const getTimeDuration = () => {
-    const time = Math.floor(player.getDuration())
-    let minutes = Math.floor(time / 60)
-    let seconds = Math.floor(time - minutes * 60)
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    setMinutesDuration(minutes)
-    setSecondsDuration(seconds)
-    // console.log(context.player.getCurrentTime())
-  }
-  const seekBar = (e) => {
-    if (player.getPlayerState() == 1) {
-      setProgress(e.target.value)
-      let seekBarTo = player.getDuration() * (e.target.value / 100)
-      player.seekTo(seekBarTo, true)
-    }
-  }
 
   return (
     <div className="music-sticky">
       <div id="yt-player"></div>
       <div className="buttons">
         <ul className="list-buttons">
-          <button onClick={getTime}>click me </button>
+          {/* <button onClick={getTime}>click me </button> */}
           <div className="volume-slider">
             <span><FontAwesomeIcon className="fa-icon" icon={faVolumeMute} /> </span>
             <input
@@ -188,12 +145,7 @@ const Player = () => {
 
         </ul>
         <div className="progress-div">
-          <p>{minutes}:{seconds}</p>
-          <input className="progress" value={progress} onChange={seekBar} type="range" />
-          <p>{minutesDuration}:{secondsDuration}</p>
-          <div>
-          </div>
-
+          <Progressbar />
         </div>
       </div>
     </div>
