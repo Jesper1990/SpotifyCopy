@@ -17,8 +17,6 @@ const Player = () => {
   const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
   const [player, setPlayer] = useState()
   const [isActive, setIsActive] = useState(true)
-  // const [progress, setProgress] = useState()
-  const [context, updateContext] = useState(PlayerContext)
   const [progress, setProgress] = useState(0)
   const [seconds, setSeconds] = useState(0)
   const [minutes, setMinutes] = useState(0)
@@ -31,8 +29,6 @@ const Player = () => {
 
   useEffect(() => {
     if (!player) return
-    // if (player.getPlayerState() != 0) return
-
     setInterval(() => {
       let currentTime = player.getCurrentTime()
       let duration = player.getDuration()
@@ -49,22 +45,22 @@ const Player = () => {
 
 
   // Startar spelaren med det specifika ID:t för låten man har klickat på.
-  // useEffect(() => {
-  //   if (videoId) {
-  //     startSong()
-  //     // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
-  //     playSong()
-  //   }
-  // }, [videoId])
-
-  // Ej fullt funktionell då den nu alltid startar på första ID:t även om man klickar på någon annan.
   useEffect(() => {
-    if (videoPlaylist) {
-      startPlaylist(videoPlaylist)
+    if (videoId) {
+      startSong()
       // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
       playSong()
     }
-  }, [videoPlaylist])
+  }, [videoId])
+
+  // Ej fullt funktionell då den nu alltid startar på första ID:t även om man klickar på någon annan.
+  // useEffect(() => {
+  //   if (videoPlaylist) {
+  //     startPlaylist(videoPlaylist)
+  //     // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
+  //     playSong()
+  //   }
+  // }, [videoPlaylist])
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
@@ -76,16 +72,10 @@ const Player = () => {
       }
 
     })
-    // window.onclick = () => {
-    //   console.log(player);
-    //   alert(player.getCurrentTime);
-    // }
+
     setPlayer(ytPlayer)
 
-    //lägger till ytPlayer till context som var player: Null
-    updateContext({
-      player: ytPlayer
-    })
+
     dispatch(setVideoPlayer(ytPlayer))
   }
 

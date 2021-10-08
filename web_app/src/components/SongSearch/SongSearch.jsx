@@ -60,7 +60,7 @@ const SongSearch = () => {
     if (e.key === 'Enter') {
       getSong()
       getArtist()
-      getPlaylist()
+      // getPlaylist()
     }
   }
   const buttonClick = () => {
