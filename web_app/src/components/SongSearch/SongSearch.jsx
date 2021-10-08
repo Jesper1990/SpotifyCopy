@@ -13,6 +13,7 @@ const SongSearch = () => {
   const [playlist, setPlaylist] = useState([])
   const playlistId = [];
   const [artists, setArtists] = useState()
+  const [currentIndex, setCurrentIndex] = useState(0)
   const videoPlayer = useSelector(state => state.videoPlayer.videoPlayer)
  
 
@@ -43,16 +44,18 @@ const SongSearch = () => {
 // when nextbutton is clicked, retrieve new videoId from index.
   const songClick = (song, i) => {
     dispatch(setVideoId(song.videoId))
+    setCurrentIndex(i)  
     // dispatch(setVideoPlaylist(playlist))
     console.log(`${song.videoId} : ${i}`)
+    songs.forEach((value, index) => dispatch(setVideoId(value.videoId), setCurrentIndex(index)))
     // console.log(videoPlayer);
     // playlist.forEach((value, index) => console.log(`${index} : ${value}`))
+    console.log(currentIndex);
   }
 
-  const testNext = (song, i) => {
+  const testNext = () => {
     // videoPlayer.nextVideo()
     console.log(videoPlayer);
-    console.log(`${song.videoId} : ${i}`)
   }
 
   const handleKeypress = (e) => {
