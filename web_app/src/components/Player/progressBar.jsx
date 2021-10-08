@@ -1,42 +1,76 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { PlayerContext } from '../../Contexts/PlayerContext'
+import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+
+
+
+
 
 const Progressbar = () => {
-  const [context, updateContext] = useContext(PlayerContext)
+
+  const videoPlayer = useSelector(state => state.videoPlayer.videoPlayer)
   const [progress, setProgress] = useState(0)
+
+  const [seconds, setSeconds] = useState(0)
+  const [minutes, setMinutes] = useState(0)
+  const [minutesDuration, setMinutesDuration] = useState(0)
+  const [secondsDuration, setSecondsDuration] = useState(0)
+
+
+
 
   //räknar ut längd på låt i %
 
   useEffect(() => {
-    if (!context.player) return
-    // if (player.getPlayerState() != 0) return
+    if (!videoPlayer) return
     setInterval(() => {
-      let currentTime = context.player.getCurrentTime()
-      // console.log('currenttime' + currentTime)
-
-      let duration = context.player.getDuration()
-      // console.log('duration' + duration)
-
-      let timelaps = (currentTime / duration) * 100;
-      // console.log(timelaps)
+      let currentTime = videoPlayer.getCurrentTime()
+      let duration = videoPlayer.getDuration()
+      let timelaps = Math.floor((currentTime / duration) * 100);
 
       setProgress(timelaps)
+      getTime()
+      getTimeDuration()
+
     }, 1000)
-    console.log('mhsdfkdf' + context.player)
-
-  }, [context.player])
 
 
-  const seekBar = (event) => {
-    console.log(context.player)
-    // setProgress(event.target.value)
-    // let seekBarTo = context.player.getDuration() / event.target.value
-    // context.player.seekTo(seekBarTo, true)
+  }, [videoPlayer])
+
+  const getTime = () => {
+    const time = Math.floor(videoPlayer.getCurrentTime())
+    let minutes = Math.floor(time / 60)
+    let seconds = Math.floor(time - minutes * 60)
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    setMinutes(minutes)
+    setSeconds(seconds)
+
   }
+  const getTimeDuration = () => {
+    const time = Math.floor(videoPlayer.getDuration())
+    let minutes = Math.floor(time / 60)
+    let seconds = Math.floor(time - minutes * 60)
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    setMinutesDuration(minutes)
+    setSecondsDuration(seconds)
+
+  }
+  const seekBar = (e) => {
+    if (videoPlayer.getPlayerState() == 1) {
+      setProgress(e.target.value)
+      let seekBarTo = videoPlayer.getDuration() * (e.target.value / 100)
+      videoPlayer.seekTo(seekBarTo, true)
+    }
+  }
+
   return (
-    <div>
+    <div className="progress-div">
+      <p>{minutes}:{seconds}</p>
       <input className="progress" value={progress} onChange={seekBar} type="range" />
+      <p>{minutesDuration}:{secondsDuration}</p>
     </div>
+
+
+
   )
 }
 
