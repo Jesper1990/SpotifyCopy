@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import './ArtistPage.css'
 
 
+
  
 function Artist() {
 
@@ -34,6 +35,14 @@ function Artist() {
     }
   }, [])
   console.log("hej", artists)
+
+  const [clicked, setClicked] = useState(false)
+
+  const toggleClick = () => {
+    
+    setClicked(!clicked)
+    
+  }
   
   
   return (
@@ -41,14 +50,25 @@ function Artist() {
 
       
 
-      <button onClick={togglePopup} className="btn-popup">Share Artist with a Link!</button>
-
-
-    
-
-           <h1 className="artist-name">{artists && artists.name}</h1>
-      <p className="artist-description">{artists && artists.description}</p>
-
+      
+      
+      <h1 className="artist-name">{artists && artists.name}</h1>
+      <div className="btn-container">
+      <button className="card-btn" onClick={toggleClick}>About</button>
+      <button onClick={togglePopup} className="btn-popup">Share with Link</button>
+      </div>
+      {clicked && (
+      <div className="card-container">
+      <div className="card">
+        
+        <p className="artist-description">{artists && artists.description}</p>
+        <div className="card-footer">
+         <button className="card-btn" onClick={toggleClick}>Close</button>
+        </div>
+        </div>
+        </div>
+      )}
+      
       <h3 className="songs-title">Most popular songs!</h3>
 
         <div className="grid-container">
@@ -96,12 +116,11 @@ function Artist() {
               type="text"
               placeholder={`http://localhost:3000/artist/${browseid}`}
             />
-
             <button onClick={() => navigator.clipboard.writeText(`http://localhost:3000/artist/${browseid}`)} >
             Copy Link!
           </button>
-          
-          <button onClick={togglePopup} className="close-popup" >Close</button>
+            <button onClick={togglePopup} className="close-popup" >Close</button>
+            
         </div>
         
     </div>

@@ -3,13 +3,67 @@
  }
 
  .artist-name{
-   text-align: center;
+   
      font-family: 'Irish Grover', cursive;
  }
 
+
  .artist-description{
+   margin-bottom: 25px;
+   overflow: hidden;
+   
   
  }
+
+ .card-cointainer{
+   display: flex;
+   align-items: center;
+ }
+ 
+ 
+ .card {
+    display: inline-flex; 
+   margin: 0 20px; 
+   border: 2px solid green;
+   border-radius: 15px;
+   padding: 25px 20px;
+   flex-direction: column;
+ }
+
+ .card-clicked .artist-description{
+      display: inline-flex; 
+   margin: 0 20px; 
+   border: 2px solid green;
+   border-radius: 15px;
+   padding: 25px 20px;
+   flex-direction: column;
+   max-height: none;
+ }
+ 
+ .card-btn{
+   background-color: green;
+   display: inline-flex;
+   border: 1px solid green;
+   border-radius: 22px ;
+   height: 25px;
+   padding: 0 25px;
+   margin: 10px 10px 10px 0px;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+   transition: .3s;
+   color: white;
+ }
+
+
+
+ .card-btn:hover{
+   background: rgb(1, 56, 1);
+   color: white;
+   cursor: pointer;
+ }
+
+
 
  .grid-container {
   display: grid;
@@ -77,18 +131,32 @@
 
  /*modal nedanför */
  
- body.active-popup {
+  body.active-popup {
     overflow-y: hidden;
-}
+} 
 
 .btn-popup {
-    padding: 10px 20px;
-    display: block;
-    margin: 100px auto 0;
-    font-size: 18px;
+     background-color: green;
+   display: inline-flex;
+   border: 1px solid green;
+   border-radius: 22px ;
+   height: 25px;
+   padding: 0 25px;
+   margin: 10px 10px 10px 0px ;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+   transition: .3s;
+   color: white;
 }
 
- .popup, .overlay {
+.btn-popup:hover {
+   background: rgb(1, 56, 1);
+   color: white;
+   cursor: pointer;
+}
+
+  .popup, .overlay {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -96,12 +164,12 @@
     right: 0;
     bottom: 0;
     position: fixed;
-}
+} 
 
 .overlay {
     background: rgba(49,49,49,0.8);
 }
-.popup-content {
+ .popup-content {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -112,7 +180,7 @@
     border-radius: 3px;
     max-width: 600px;
     min-width: 300px;
-}
+} 
 
 .close-popup {
     position: absolute;
