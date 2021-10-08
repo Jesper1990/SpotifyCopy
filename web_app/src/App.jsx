@@ -10,6 +10,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SongSearch from './components/SongSearch/SongSearch';
 import Player from './components/Player/Player';
 import Artist from './components/ArtistPage/ArtistPage';
+// import Progressbar from './components/Player/progressBar'
+
+
 import Playlist from './components/Playlist/Playlist';
 
 
@@ -19,8 +22,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />     
-        <Route path = "/Artist/:browseid" component={Artist} />
+        <Navbar />
+        <Route path="/Artist/:browseid" component={Artist} />
         <Route path="/register" exact component={Register} />
         <Route path="/" exact component={Start} />
         <Route path="/search" component={SongSearch} />
@@ -28,6 +31,9 @@ function App() {
         <Route path="/Userlogin" exact component={Userlogin} />
         <Route path="/Playlist" exact component={Playlist} />
         <Player />
+
+
+
       </div>
 
     </Router>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 // import { setVideoPlaylist } from '../../redux/ducks/videoPlaylist';
 import { setVideoId } from '../../redux/ducks/videoId';
@@ -14,7 +14,7 @@ const SongSearch = () => {
   const playlistId = [];
   const [artists, setArtists] = useState()
   const videoPlayer = useSelector(state => state.videoPlayer.videoPlayer)
- 
+
 
   const getSong = () => {
     fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${input}`)
@@ -25,28 +25,29 @@ const SongSearch = () => {
         setPlaylist(playlistId)
       })
   }
-        
-      
-  
-   const getArtist = () => {
-     fetch(`https://yt-music-api.herokuapp.com/api/yt/search/${input}`)
-       .then((res) => res.json())
-       .then((data) => {
-         const [artist] = data.content.filter(d => (d.type === "artist"))
-          setArtists([artist])
+
+
+
+  const getArtist = () => {
+    fetch(`https://yt-music-api.herokuapp.com/api/yt/search/${input}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const [artist] = data.content.filter(d => (d.type === "artist"))
+        setArtists([artist])
         //  console.log(artist)
-       })
+      })
   }
 
-// currentSongIndex state on clicked index
-// ignore videoPlaylist
-// when nextbutton is clicked, retrieve new videoId from index.
+  // currentSongIndex state on clicked index
+  // ignore videoPlaylist
+  // when nextbutton is clicked, retrieve new videoId from index.
   const songClick = (song, i) => {
     dispatch(setVideoId(song.videoId))
     // dispatch(setVideoPlaylist(playlist))
     console.log(`${song.videoId} : ${i}`)
     // console.log(videoPlayer);
     // playlist.forEach((value, index) => console.log(`${index} : ${value}`))
+
   }
 
   const testNext = (song, i) => {
@@ -59,6 +60,7 @@ const SongSearch = () => {
     if (e.key === 'Enter') {
       getSong()
       getArtist()
+      // getPlaylist()
     }
   }
   const buttonClick = () => {
@@ -79,18 +81,18 @@ const SongSearch = () => {
           Search
         </button>
         <hr />
-        
-         <div>
+
+        <div>
           {artists && artists.map(artist => (
-            
+
             <div className="search-result">
               <Link to={`artist/${artist.browseId}`}>
-                <img src={artist.thumbnails[0]?.url} /> 
+                <img src={artist.thumbnails[0]?.url} />
               </Link>
             </div>
-            
-          )) }
-        </div>  
+
+          ))}
+        </div>
 
         <div className="grid-container">
           <button onClick={testNext}>Test next</button>
