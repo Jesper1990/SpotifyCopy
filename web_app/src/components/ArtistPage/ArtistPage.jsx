@@ -47,7 +47,7 @@ function Artist() {
     
 
            <h1 className="artist-name">{artists && artists.name}</h1>
-      <p>{artists && artists.description}</p>
+      <p className="artist-description">{artists && artists.description}</p>
 
       <h3 className="songs-title">Most popular songs!</h3>
 
