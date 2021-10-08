@@ -81,7 +81,7 @@ async function whoAmI() {
 
             <div>
                 
-            {playlists.map((pl,i) => (
+            {playlists && playlists.map((pl,i) => (
                     <p>{pl.playlistName}</p>
                 ))}
             </div>
