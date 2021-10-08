@@ -5,6 +5,8 @@ import './Player.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setVideoPlayer } from '../../redux/ducks/videoPlayer';
 import Progressbar from '../Player/progressBar'
+import { setVideoIndex } from '../../redux/ducks/videoIndex';
+import { setVideoId } from '../../redux/ducks/videoId';
 
 
 // TODO: Updatera så att Play/Pause knappen även kollar state på ifall spelaren är Aktiv! 
@@ -16,8 +18,11 @@ const Player = () => {
   const videoId = useSelector(state => state.videoId.videoId)
   // State på en Array utav ID:s som skickas via onClick i sökfunktionen, skall separeras för bättre funktionalitet.
   const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
+  const videoIndex = useSelector(state => state.videoIndex.videoIndex)
+  const videoSongQueue = useSelector (state => state.videoSongQueue.videoSongQueue)
   const [player, setPlayer] = useState()
   const [isActive, setIsActive] = useState(true)
+
 
   useEffect(() => {
     loadPlayer()
@@ -55,8 +60,6 @@ const Player = () => {
     })
 
     setPlayer(ytPlayer)
-
-
     dispatch(setVideoPlayer(ytPlayer))
   }
 
@@ -69,7 +72,6 @@ const Player = () => {
     if (event.data == YT.PlayerState.PLAYING) {
       setVolume(event.target)
       seekTo(event.target, true)
-
     }
   }
   const startSong = () => {
@@ -102,16 +104,20 @@ const Player = () => {
     }
   }
   // Funktion för knappen "Next"
-  // currentSongindex +1
-  // setVideo on next index
-  // previousVideo -1
   const nextSong = () => {
-    // startSong(videoIndex)
-    player.nextVideo()
+    if (videoIndex < videoSongQueue.length) {
+      const nextSong = videoSongQueue[videoIndex + 1]
+      dispatch(setVideoIndex(videoIndex + 1))
+      dispatch(setVideoId(nextSong.videoId))
+    }
   }
   // Funktion för knappen "Previous"
   const previousSong = () => {
-    player.previousVideo()
+    if (videoIndex > 0) {
+      const nextSong = videoSongQueue[videoIndex - 1]
+      dispatch(setVideoIndex(videoIndex - 1))
+      dispatch(setVideoId(nextSong.videoId))
+    }
   }
 
 
@@ -120,7 +126,6 @@ const Player = () => {
       <div id="yt-player"></div>
       <div className="buttons">
         <ul className="list-buttons">
-          {/* <button onClick={getTime}>click me </button> */}
           <div className="volume-slider">
             <span><FontAwesomeIcon className="fa-icon" icon={faVolumeMute} /> </span>
             <input
