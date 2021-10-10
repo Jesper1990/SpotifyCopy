@@ -8,7 +8,6 @@ import Progressbar from '../Player/progressBar'
 import { setVideoIndex } from '../../redux/ducks/videoIndex';
 import { setVideoId } from '../../redux/ducks/videoId';
 
-
 // TODO: Updatera så att Play/Pause knappen även kollar state på ifall spelaren är Aktiv! 
 // TODO: Updatera spellistan så den kan starta från index inte från början!
 
@@ -23,12 +22,9 @@ const Player = () => {
   const [player, setPlayer] = useState()
   const [isActive, setIsActive] = useState(true)
 
-
   useEffect(() => {
     loadPlayer()
   }, [])
-
-
 
   // Startar spelaren med det specifika ID:t för låten man har klickat på.
   useEffect(() => {
@@ -56,9 +52,7 @@ const Player = () => {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange,
       }
-
     })
-
     setPlayer(ytPlayer)
     dispatch(setVideoPlayer(ytPlayer))
   }
@@ -76,21 +70,11 @@ const Player = () => {
   }
   const startSong = () => {
     player.loadVideoById(videoId)
-    // console.log(player.loadVideoById());
-    // console.log(player.loadVideoById().playerInfo);
-    // console.log(player.getDuration());
   }
   // Funktion för att ladda spelaren med en spellista (en array utav ID:s som skickas via store.)
   const startPlaylist = () => {
     player.loadPlaylist(videoPlaylist, player.getPlaylistIndex())
     console.log(player.loadPlaylist());
-    // console.log(videoPlaylist + videoIndex);
-    // videoPlaylist.forEach((value) => player.cueVideoById(value))
-    // videoPlaylist.forEach((value) => console.log(value))
-    // player.cuePlaylist(videoPlaylist)
-    // videoPlaylist.forEach((value, index) => player.loadPlaylist(videoPlaylist, index))
-    // videoPlaylist.forEach((index) => console.log(index))
-    // videoPlaylist.forEach((value, index) => console.log(`${index} : ${value}`))
   }
 
   // Funktion för att ändra toggle på "Play / Pause" ikonerna
@@ -120,38 +104,51 @@ const Player = () => {
     }
   }
 
-
   return (
-    <div className="music-sticky">
-      <div id="yt-player"></div>
+    <div className="music-sticky">         
       <div className="buttons">
-        <ul className="list-buttons">
-          <div className="volume-slider">
+        <div id="yt-player"></div>
+        <div className="player-container">
+          {videoSongQueue ? 
+            <div className="display-player">
+              <img src={videoSongQueue[videoIndex].thumbnails[0].url} className="player-image" />
+              <div className="player-name">
+                <h4 className="player-artist">{videoSongQueue[videoIndex].artist.name}</h4>
+                <p className="player-song">{videoSongQueue[videoIndex].name}</p>                
+              </div>
+            </div>
+            :
+            <div />
+          }
+        </div>
+        <div className="controls">
+          <ul className="list-buttons">     
+            <li className="list-link" onClick={previousSong}>
+              <FontAwesomeIcon className="fa-icon" icon={faStepBackward} />
+            </li>
+            <li className="list-play-pause" onClick={playSong}>
+              {/* Toggle funktion för att ändra display på ikoner. ? = True, : = False. "Play" är default eftersom useState är satt till false default.  */}
+              {isActive ? <FontAwesomeIcon className="play-pause" icon={faPause} /> : <FontAwesomeIcon className="play-pause" icon={faPlay} />}
+            </li>
+            <li className="list-link" onClick={nextSong}>
+              <FontAwesomeIcon className="fa-icon" icon={faStepForward} />
+            </li>
+          </ul>
+        </div>
+        <div className="volume-slider">
             <span><FontAwesomeIcon className="fa-icon" icon={faVolumeMute} /> </span>
-            <input
+              <input
+              className="volume-bar"
               type="range"
               min="0"
               max="100"
               onChange={(e) => player.setVolume(e.target.value)}
             />
             <span><FontAwesomeIcon className="fa-icon" icon={faVolumeUp} /></span>
-          </div>
-          <li className="list-link" onClick={previousSong}>
-            <FontAwesomeIcon className="fa-icon" icon={faStepBackward} />
-          </li>
-
-          <li className="list-play-pause" onClick={playSong}>
-            {/* Toggle funktion för att ändra display på ikoner. ? = True, : = False. "Play" är default eftersom useState är satt till false default.  */}
-            {isActive ? <FontAwesomeIcon className="play-pause" icon={faPause} /> : <FontAwesomeIcon className="play-pause" icon={faPlay} />}
-          </li>
-          <li className="list-link" onClick={nextSong}>
-            <FontAwesomeIcon className="fa-icon" icon={faStepForward} />
-          </li>
-
-        </ul>
-        <div className="progress-div">
-          <Progressbar />
-        </div>
+          </div> 
+      </div>
+      <div className="progress-div">
+        <Progressbar />
       </div>
     </div>
   )

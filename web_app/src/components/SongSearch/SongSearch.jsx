@@ -88,8 +88,8 @@ const SongSearch = () => {
         <div className="grid-container">
           {/* <button onClick={testFunktion}>Test next</button> */}
           {songs && songs.map((song, i) => (
-            <div className="grid-display">
-              <div className="search-container" key={song.videoId} onClick={() => songClick(song, i)}>
+            <div className="grid-display" key={song.videoId}>
+              <div className="search-container" onClick={() => songClick(song, i)}>
                 <img className="search-img" src={song.thumbnails[0].url} />
                 <div className="search-name">
                   <h4>{song.artist.name}</h4>

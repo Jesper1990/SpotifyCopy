@@ -51,10 +51,17 @@ const Progressbar = () => {
   }
 
   return (
-    <div className="progress-div">
-      <p>{minutes}:{seconds}</p>
-      <input className="progress" value={progress} onChange={seekBar} type="range" />
-      <p>{minutesDuration}:{secondsDuration}</p>
+    <div className="progress-main">
+      <div className="progress-bar">
+        <input className="progress" value={progress} onChange={seekBar} type="range" />
+      </div>
+      <div className="progress-left">
+        <span>{minutes}:{seconds}</span>
+      </div>
+      <div className="progress-right">
+        <span>{minutesDuration}:{secondsDuration}</span>
+      </div>
+      
     </div>
   )
 }
