@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 // import { setVideoPlaylist } from '../../redux/ducks/videoPlaylist';
 import { setVideoId } from '../../redux/ducks/videoId';
 import './SongSearch.css'
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { setVideoSongQueue } from '../../redux/ducks/videoSongQueue';
+import { setVideoIndex } from '../../redux/ducks/videoIndex';
 
 const SongSearch = () => {
   const dispatch = useDispatch()
@@ -13,8 +14,6 @@ const SongSearch = () => {
   const [playlist, setPlaylist] = useState([])
   const playlistId = [];
   const [artists, setArtists] = useState()
-  const videoPlayer = useSelector(state => state.videoPlayer.videoPlayer)
-
 
   const getSong = () => {
     fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${input}`)
@@ -23,10 +22,9 @@ const SongSearch = () => {
         setSongs(data.content)
         data.content.forEach(element => playlistId.push(element.videoId))
         setPlaylist(playlistId)
+        
       })
   }
-
-
 
   const getArtist = () => {
     fetch(`https://yt-music-api.herokuapp.com/api/yt/search/${input}`)
@@ -34,39 +32,32 @@ const SongSearch = () => {
       .then((data) => {
         const [artist] = data.content.filter(d => (d.type === "artist"))
         setArtists([artist])
-        //  console.log(artist)
       })
   }
 
-  // currentSongIndex state on clicked index
-  // ignore videoPlaylist
-  // when nextbutton is clicked, retrieve new videoId from index.
+  /* onClick function   
+      1. setVideoId to the player to play the correct song
+      2. setVideoIndex to get the index of the currently playing song.
+      3. setVideoSongQueue to get the entire songs object to track index in the player.
+  */
   const songClick = (song, i) => {
     dispatch(setVideoId(song.videoId))
-    // dispatch(setVideoPlaylist(playlist))
-    console.log(`${song.videoId} : ${i}`)
-    // console.log(videoPlayer);
-    // playlist.forEach((value, index) => console.log(`${index} : ${value}`))
-
-  }
-
-  const testNext = (song, i) => {
-    // videoPlayer.nextVideo()
-    console.log(videoPlayer);
-    console.log(`${song.videoId} : ${i}`)
+    dispatch(setVideoIndex(i))
+    dispatch(setVideoSongQueue(songs))
   }
 
   const handleKeypress = (e) => {
     if (e.key === 'Enter') {
       getSong()
       getArtist()
-      // getPlaylist()
     }
   }
+
   const buttonClick = () => {
     getSong()
     getArtist()
   }
+
   return (
     <div className="search-main">
       <div>
@@ -95,10 +86,10 @@ const SongSearch = () => {
         </div>
 
         <div className="grid-container">
-          <button onClick={testNext}>Test next</button>
+          {/* <button onClick={testFunktion}>Test next</button> */}
           {songs && songs.map((song, i) => (
-            <div className="grid-display">
-              <div className="search-container" key={song.id} onClick={() => songClick(song, i)}>
+            <div className="grid-display" key={song.videoId}>
+              <div className="search-container" onClick={() => songClick(song, i)}>
                 <img className="search-img" src={song.thumbnails[0].url} />
                 <div className="search-name">
                   <h4>{song.artist.name}</h4>
