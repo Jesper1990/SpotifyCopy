@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import './Userlogin.css'
+import { Link } from "react-router-dom";
 
 function Userlogin () {
 
@@ -56,6 +57,7 @@ function Userlogin () {
     <div className='container'>
       <form className='form-group' onSubmit={springLogin}>
         <input
+          className="input-username"
           onChange={e => setUsername(e.target.value)}
           id='name'
           value={usernamex}
@@ -63,6 +65,7 @@ function Userlogin () {
           type='text'
         ></input>
         <input
+          className="input-password"
           onChange={e => setPassword(e.target.value)}
           id='password'
           value={passwordx}
@@ -71,8 +74,10 @@ function Userlogin () {
         ></input>
         <button className='btn'>Login</button>
         
-         <br /><br />
-        <p>Not a member? Register now</p>
+        <br /><br />
+        <Link to="/register">
+        <p className="p-text">Not a member? Register now</p>
+        </Link>
         </form>
       <br />
      
