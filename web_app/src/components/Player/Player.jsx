@@ -136,15 +136,16 @@ const Player = () => {
           </ul>
         </div>
         <div className="volume-slider">
-            <span><FontAwesomeIcon className="fa-icon" icon={faVolumeMute} /> </span>
+                   
               <input
               className="volume-bar"
               type="range"
               min="0"
               max="100"
               onChange={(e) => player.setVolume(e.target.value)}
-            />
-            <span><FontAwesomeIcon className="fa-icon" icon={faVolumeUp} /></span>
+          />
+          <span><FontAwesomeIcon className="fa-icon-volume" icon={faVolumeUp} /></span>
+            {/* <span><FontAwesomeIcon className="fa-icon-volume" icon={faVolumeMute} /> </span> */}
           </div> 
       </div>
       <div className="progress-div">
