@@ -4,9 +4,10 @@ import { faPause, faPlay, faStepBackward, faStepForward, faVolumeMute, faVolumeU
 import './Player.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setVideoPlayer } from '../../redux/ducks/videoPlayer';
-import Progressbar from '../Player/progressBar'
+import ProgressBar from '../ProgressBar/ProgressBar'
 import { setVideoIndex } from '../../redux/ducks/videoIndex';
 import { setVideoId } from '../../redux/ducks/videoId';
+import { Link } from 'react-router-dom';
 
 // TODO: Updatera så att Play/Pause knappen även kollar state på ifall spelaren är Aktiv! 
 // TODO: Updatera spellistan så den kan starta från index inte från början!
@@ -111,7 +112,9 @@ const Player = () => {
         <div className="player-container">
           {videoSongQueue ? 
             <div className="display-player">
+              <Link to="/mediaplayer">
               <img src={videoSongQueue[videoIndex].thumbnails[0].url} className="player-image" />
+              </Link>
               <div className="player-name">
                 <h4 className="player-artist">{videoSongQueue[videoIndex].artist.name}</h4>
                 <p className="player-song">{videoSongQueue[videoIndex].name}</p>                
@@ -135,21 +138,20 @@ const Player = () => {
             </li>
           </ul>
         </div>
-        <div className="volume-slider">
-                   
-              <input
-              className="volume-bar"
-              type="range"
-              min="0"
-              max="100"
-              onChange={(e) => player.setVolume(e.target.value)}
+        <div className="volume-slider">       
+          <input
+            className="volume-bar"
+            type="range"
+            min="0"
+            max="100"
+            onChange={(e) => player.setVolume(e.target.value)}
           />
           <span><FontAwesomeIcon className="fa-icon-volume" icon={faVolumeUp} /></span>
             {/* <span><FontAwesomeIcon className="fa-icon-volume" icon={faVolumeMute} /> </span> */}
-          </div> 
+        </div> 
       </div>
       <div className="progress-div">
-        <Progressbar />
+        <ProgressBar />
       </div>
     </div>
   )

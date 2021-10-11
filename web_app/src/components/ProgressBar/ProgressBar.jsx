@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import './ProgressBar.css'
 
-const Progressbar = () => {
+const ProgressBar = () => {
 
   const videoPlayer = useSelector(state => state.videoPlayer.videoPlayer)
   const [progress, setProgress] = useState(0)
@@ -66,4 +67,4 @@ const Progressbar = () => {
   )
 }
 
-export default Progressbar
+export default ProgressBar
