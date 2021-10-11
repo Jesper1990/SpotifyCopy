@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { faPause, faPlay, faStepBackward, faStepForward, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
+import { faCompressArrowsAlt, faExpandArrowsAlt, faPause, faPlay, faStepBackward, faStepForward, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import './Player.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setVideoPlayer } from '../../redux/ducks/videoPlayer';
@@ -129,7 +129,7 @@ const Player = () => {
                 <h4 className="player-artist">{videoSongQueue[videoIndex].artist.name}</h4>
                 <p className="player-song">{videoSongQueue[videoIndex].name}</p>
                 <div className="hide-playe" onClick={() => setViewPlayer(!viewPlayer)}>
-                  <i className={viewPlayer ? 'fas fa-expand-arrows-alt' : 'fas fa-compress-arrows-alt'}><div id="yt-player"></div></i>
+                  {viewPlayer ? <FontAwesomeIcon icon={faExpandArrowsAlt} /> : <FontAwesomeIcon icon={faCompressArrowsAlt} />}
                 </div>
               </div>
             </div>

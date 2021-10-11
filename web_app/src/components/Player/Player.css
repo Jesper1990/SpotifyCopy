@@ -156,7 +156,7 @@
             right:200%;
             opacity: 1;
             transition: all 0.5s ease-out;
-            z-index: -30;
+            /* z-index: -30; */
 /* PROGRESS-SLIDER CSS */
 }
 .progress-div {
