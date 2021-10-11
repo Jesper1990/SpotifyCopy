@@ -98,9 +98,13 @@ function Artist() {
 
       <h3 className="albums-title">Albums!</h3>
       <div>{artists && artists.products.albums.content.map(album => (
-        <div>
-          <p>{album.name}</p>
-          <img src = {album.thumbnails[0].url}></img>
+        <div className="albums-container">
+          <div className ="albums-name">
+            <p className="albums-p">{album.name}</p>
+          </div>
+          <div className="albums-img">
+            <img src={album.thumbnails[0].url}></img>
+            </div>
         </div>
       ))}</div>
       
@@ -113,10 +117,11 @@ function Artist() {
         <div className="popup-content">
 
             <input
+              className="input-text"
               type="text"
               placeholder={`http://localhost:3000/artist/${browseid}`}
             />
-            <button onClick={() => navigator.clipboard.writeText(`http://localhost:3000/artist/${browseid}`)} >
+            <button className="copy-btn" onClick={() => navigator.clipboard.writeText(`http://localhost:3000/artist/${browseid}`)} >
             Copy Link!
           </button>
             <button onClick={togglePopup} className="close-popup" >Close</button>
