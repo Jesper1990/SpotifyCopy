@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { faPause, faPlay, faStepBackward, faStepForward, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
+import { faCompressArrowsAlt, faExpandArrowsAlt, faPause, faPlay, faStepBackward, faStepForward, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import './Player.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setVideoPlayer } from '../../redux/ducks/videoPlayer';
@@ -19,9 +19,10 @@ const Player = () => {
   // State på en Array utav ID:s som skickas via onClick i sökfunktionen, skall separeras för bättre funktionalitet.
   const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
   const videoIndex = useSelector(state => state.videoIndex.videoIndex)
-  const videoSongQueue = useSelector (state => state.videoSongQueue.videoSongQueue)
+  const videoSongQueue = useSelector(state => state.videoSongQueue.videoSongQueue)
   const [player, setPlayer] = useState()
   const [isActive, setIsActive] = useState(true)
+  const [viewPlayer, setViewPlayer] = useState(true)
 
   useEffect(() => {
     loadPlayer()
@@ -47,8 +48,15 @@ const Player = () => {
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
-      height: '0',
-      width: '0',
+      height: '400',
+      width: '400',
+      playerVars: {
+        modestbranding: 1,
+        controls: 0,
+        rel: 0,
+      },
+
+      // c
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange,
@@ -106,18 +114,26 @@ const Player = () => {
   }
 
   return (
-    <div className="music-sticky">         
+    <div className="music-sticky">
       <div className="buttons">
+        <ul className={viewPlayer ? 'player-show' : 'player-hidden'}><div id="yt-player"></div></ul>
+        {/* <div id="yt-player" className="player"></div> */}
+        <div className="buttons">
+
+        </div>
         <div id="yt-player"></div>
         <div className="player-container">
-          {videoSongQueue ? 
+          {videoSongQueue ?
             <div className="display-player">
               <Link to="/mediaplayer">
               <img src={videoSongQueue[videoIndex].thumbnails[0].url} className="player-image" />
               </Link>
               <div className="player-name">
                 <h4 className="player-artist">{videoSongQueue[videoIndex].artist.name}</h4>
-                <p className="player-song">{videoSongQueue[videoIndex].name}</p>                
+                <p className="player-song">{videoSongQueue[videoIndex].name}</p>
+                <div className="hide-playe" onClick={() => setViewPlayer(!viewPlayer)}>
+                  {viewPlayer ? <FontAwesomeIcon icon={faExpandArrowsAlt} /> : <FontAwesomeIcon icon={faCompressArrowsAlt} />}
+                </div>
               </div>
             </div>
             :
@@ -125,7 +141,7 @@ const Player = () => {
           }
         </div>
         <div className="controls">
-          <ul className="list-buttons">     
+          <ul className="list-buttons">
             <li className="list-link" onClick={previousSong}>
               <FontAwesomeIcon className="fa-icon" icon={faStepBackward} />
             </li>
