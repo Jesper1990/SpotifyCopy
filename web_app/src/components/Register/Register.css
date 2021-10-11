@@ -42,8 +42,9 @@ input {
   padding: 12px 20px;
   margin: 12px 0;
   border-radius: 8px;
+  border-color: green;
   box-sizing: border-box;
-  background-color: rgb(146, 146, 146);
+  background-color: rgb(73, 72, 72);
   color: white;
 }
 
