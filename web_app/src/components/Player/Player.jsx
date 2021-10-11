@@ -18,6 +18,7 @@ const Player = () => {
   const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
   const [player, setPlayer] = useState()
   const [isActive, setIsActive] = useState(true)
+  const [viewPlayer, setViewPlayer] = useState(true)
 
   useEffect(() => {
     loadPlayer()
@@ -45,8 +46,8 @@ const Player = () => {
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
-      height: '0',
-      width: '0',
+      height: '100',
+      width: '100',
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange,
@@ -117,8 +118,15 @@ const Player = () => {
 
   return (
     <div className="music-sticky">
-      <div id="yt-player"></div>
+      {/* <div className="hide-player" onClick={() => setViewPlayer(!viewPlayer)}>
+        <i className={viewPlayer ? 'fas fa-expand-arrows-alt' : 'fas fa-compress-arrows-alt'}></i>
+      </div> */}
+      <ul className={viewPlayer ? 'player-show' : 'player-hidden'}></ul>
+      <div id="yt-player" className="player"></div>
       <div className="buttons">
+        <div className="hide-player" onClick={() => setViewPlayer(!viewPlayer)}>
+          <i className={viewPlayer ? 'fas fa-expand-arrows-alt' : 'fas fa-compress-arrows-alt'}></i>
+        </div>
         <ul className="list-buttons">
           {/* <button onClick={getTime}>click me </button> */}
           <div className="volume-slider">

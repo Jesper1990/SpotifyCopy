@@ -34,7 +34,7 @@
       grid-template-columns: repeat(5,auto);
       grid-gap: 10px;
       list-style: none;
-      text-align: center;/* put right i center is bad*/
+      text-align: center;
       width: 70vw;
       justify-content: end;
       margin-left : 2rem;
