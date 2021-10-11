@@ -47,8 +47,15 @@ const Player = () => {
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
-      height: '100',
-      width: '100',
+      height: '400',
+      width: '400',
+      playerVars: {
+        modestbranding: 1,
+        controls: 0,
+        rel: 0,
+      },
+
+      // c
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange,
@@ -108,12 +115,10 @@ const Player = () => {
   return (
     <div className="music-sticky">
       <div className="buttons">
-        <ul className={viewPlayer ? 'player-show' : 'player-hidden'}></ul>
-        <div id="yt-player" className="player"></div>
+        <ul className={viewPlayer ? 'player-show' : 'player-hidden'}><div id="yt-player"></div></ul>
+        {/* <div id="yt-player" className="player"></div> */}
         <div className="buttons">
-          <div className="hide-player" onClick={() => setViewPlayer(!viewPlayer)}>
-            <i className={viewPlayer ? 'fas fa-expand-arrows-alt' : 'fas fa-compress-arrows-alt'}></i>
-          </div>
+
         </div>
         <div id="yt-player"></div>
         <div className="player-container">
@@ -123,6 +128,9 @@ const Player = () => {
               <div className="player-name">
                 <h4 className="player-artist">{videoSongQueue[videoIndex].artist.name}</h4>
                 <p className="player-song">{videoSongQueue[videoIndex].name}</p>
+                <div className="hide-playe" onClick={() => setViewPlayer(!viewPlayer)}>
+                  <i className={viewPlayer ? 'fas fa-expand-arrows-alt' : 'fas fa-compress-arrows-alt'}><div id="yt-player"></div></i>
+                </div>
               </div>
             </div>
             :

@@ -83,23 +83,38 @@
 
 } */
 
+.hide-player{
+  display:flex;
+            /* justify-self: flex-start;
+            position:absolute;
+            top:90;
+            right:0;
+            transform:translate(-100%, 60%);
+            font-size:1.8rem;
+            cursor: pointer; */
+}
+
 .fa-expand-arrows-alt{
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   /* position: absolute; */
-left: 30%;
-  top: 35%;
+/* left: 35%;
+  top: 35%;*/
   color:#008a18;
-  z-index :100;
+  z-index :1; 
 }
 
 .fa-compress-arrows-alt {
   display: flex;
-  /* position: absolute; */
-  left: 30%;
-  top: 35%;
+  flex-direction: row;
+  /* align-self: right; */
+  /* position: absolute;   */
+   /* position: relative; */
+  /* right: 35%; */
+  /* left: 500%; */
+  /* top: 35%; */
   color:#008a18;
-   z-index:100;
+   /* z-index:100; */ 
   
 }
 /* .progress-div {
@@ -107,31 +122,43 @@ left: 30%;
   width: 100%;
 } */
 .player-show{
-  display: flex;
-  position: absolute;
-  background-color: black;
-  opacity: 1;
-  top:40%;
-  z-index:1;
-  right: 100%;
-  height:10!important;
+    display: flex;
+    position: absolute;
+    /* background-color: black; */
+    /* width:30; */
+    opacity: 1;
+    height: 100%;
+    top:100%;
+    /* z-index:1; */
 }
+
 .player-hidden{
   background:#363636;
   /* flex-direction: center; */
  
             display:flex;
-            flex-direction:column-reverse;
-            width:35%;
-            height:200%;
-            position:absolute;
-            top: 1
-            px;
-            left: -7%;
-            /* right:200%; */
+            align-items: center;
+            /* border-style: solid; */
+            /* margin: top 100px; */
+            /* border-radius: 50%; */
+            /* border-width: 50; */
+            /* background-color: black; */
+            position:fixed;
+            /* flex-direction:column; */
+            /* width:15%; */
+            height:75%;
+            /* position:absolute; */
+            top: 6%;
+            width: 100%;
+            overflow: hidden;
+            
+            left: 0%;
+            right:200%;
             opacity: 1;
-            /* transition: all 0.5s ease-out; */
+            transition: all 0.5s ease-out;
+            z-index: -30;
 /* PROGRESS-SLIDER CSS */
+}
 .progress-div {
   display: flex;
   align-items: center;
