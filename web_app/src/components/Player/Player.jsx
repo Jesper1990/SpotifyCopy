@@ -9,9 +9,6 @@ import { setVideoIndex } from '../../redux/ducks/videoIndex';
 import { setVideoId } from '../../redux/ducks/videoId';
 import { Link } from 'react-router-dom';
 
-// TODO: Updatera så att Play/Pause knappen även kollar state på ifall spelaren är Aktiv! 
-// TODO: Updatera spellistan så den kan starta från index inte från början!
-
 const Player = () => {
   const dispatch = useDispatch()
   // State på 1 specifikt ID som skickas via onClick i sökfunktionen.
@@ -162,7 +159,7 @@ const Player = () => {
             max="100"
             onChange={(e) => player.setVolume(e.target.value)}
           />
-          <span><FontAwesomeIcon className="fa-icon-volume" icon={faVolumeUp} /></span>
+          <span className="test-span"><FontAwesomeIcon className="fa-icon-volume" icon={faVolumeUp} /></span>
             {/* <span><FontAwesomeIcon className="fa-icon-volume" icon={faVolumeMute} /> </span> */}
         </div> 
       </div>
