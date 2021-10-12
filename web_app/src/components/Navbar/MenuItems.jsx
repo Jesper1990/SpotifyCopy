@@ -25,12 +25,12 @@ const MenuItems = [
   {
     title: 'Login',
     url: '/Userlogin',
-    cName: 'nav-links-mobile'
+    cName: 'nav-links'
   },
   {
     title: 'Register',
     url: '/register',
-    cName: 'nav-links-mobile'
+    cName: 'nav-links'
   },
 
 
