@@ -68,20 +68,23 @@ const SongSearch = () => {
           onChange={e => setInput(e.target.value)}
           onKeyPress={handleKeypress}
         />
-        <button className="btn-search" onClick={buttonClick}>
+        {/* <button className="btn-search" onClick={buttonClick}>
           Search
-        </button>
-        <hr />
+        </button> */}
 
-        <div>
+        <div className="grid-container">
           {artists && artists.map(artist => (
 
-            <div className="search-result">
-              <Link to={`artist/${artist.browseId}`}>
-                <img src={artist.thumbnails[0]?.url} />
+            <div className="search-result" key={artist.browseId}>
+              <Link to={`artist/${artist.browseId}`} className="artist-link">
+                <div className="artist-container">
+                <img src={artist.thumbnails[1]?.url} className="artist-image" />
+                <div className="artist-text">
+                  <h4 className="artist-h4">{artist.name}</h4>
+                </div>
+                </div>
               </Link>
             </div>
-
           ))}
         </div>
 

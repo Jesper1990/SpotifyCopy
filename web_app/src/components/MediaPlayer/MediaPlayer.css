@@ -1,0 +1,44 @@
+.media-player-content {
+  max-width: 95%;
+  margin: auto;
+}
+.media-picture {
+  width: 100%;
+  height: 100%;
+}
+.media-text {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.media-artist {
+  margin-bottom: 5px;
+  color: #f8f8f8;
+}
+.media-song {
+  font-size: 14px;
+  color: #a3a3a3;
+}
+.media-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+}
+.fa-background {
+  background-color: rgb(26, 26, 26);
+  padding: 10px;
+  border-radius: 50%;
+}
+.fa-center {
+  padding: 10px;
+}
+.media-play-fa {
+  background-color: rgb(26, 26, 26);
+  padding: 20px;
+  border-radius: 50%;
+  color: #bbbbbb;
+  font-size: 25px;
+}
+.media-play-fa:hover {
+  color: white;
+}

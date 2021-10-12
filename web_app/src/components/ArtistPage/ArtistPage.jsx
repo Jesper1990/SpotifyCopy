@@ -130,7 +130,6 @@ function Artist() {
         
     </div>
       )}
-      
     </div>
    
 

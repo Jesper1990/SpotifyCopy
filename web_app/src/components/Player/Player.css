@@ -83,9 +83,9 @@
 
 } */
 
-.hide-player{
-  display:flex;
-            /* justify-self: flex-start;
+.hide-player {
+  display: flex;
+  /* justify-self: flex-start;
             position:absolute;
             top:90;
             right:0;
@@ -94,14 +94,14 @@
             cursor: pointer; */
 }
 
-.fa-expand-arrows-alt{
+.fa-expand-arrows-alt {
   display: flex;
   /* justify-content: center; */
   /* position: absolute; */
-/* left: 35%;
+  /* left: 35%;
   top: 35%;*/
-  color:#008a18;
-  z-index :1; 
+  color: #008a18;
+  z-index: 1;
 }
 
 .fa-compress-arrows-alt {
@@ -109,55 +109,54 @@
   flex-direction: row;
   /* align-self: right; */
   /* position: absolute;   */
-   /* position: relative; */
+  /* position: relative; */
   /* right: 35%; */
   /* left: 500%; */
   /* top: 35%; */
-  color:#008a18;
-   /* z-index:100; */ 
-  
+  color: #008a18;
+  /* z-index:100; */
 }
 /* .progress-div {
   display: flex;
   width: 100%;
 } */
-.player-show{
-    display: flex;
-    position: absolute;
-    /* background-color: black; */
-    /* width:30; */
-    opacity: 1;
-    height: 100%;
-    top:100%;
-    /* z-index:1; */
+.player-show {
+  display: flex;
+  position: absolute;
+  /* background-color: black; */
+  /* width:30; */
+  opacity: 1;
+  height: 100%;
+  top: 100%;
+  /* z-index:1; */
 }
 
-.player-hidden{
-  background:#363636;
+.player-hidden {
+  background: #363636;
   /* flex-direction: center; */
- 
-            display:flex;
-            align-items: center;
-            /* border-style: solid; */
-            /* margin: top 100px; */
-            /* border-radius: 50%; */
-            /* border-width: 50; */
-            /* background-color: black; */
-            position:fixed;
-            /* flex-direction:column; */
-            /* width:15%; */
-            height:75%;
-            /* position:absolute; */
-            top: 6%;
-            width: 100%;
-            overflow: hidden;
-            
-            left: 0%;
-            right:200%;
-            opacity: 1;
-            transition: all 0.5s ease-out;
-            /* z-index: -30; */
-/* PROGRESS-SLIDER CSS */
+
+  display: flex;
+  align-items: center;
+  /* border-style: solid; */
+  /* margin: top 100px; */
+  /* border-radius: 50%; */
+  /* border-width: 50; */
+  /* background-color: black; */
+  position: fixed;
+  /* flex-direction:column; */
+  /* width:15%; */
+  height: 75%;
+  /* position:absolute; */
+  top: 6%;
+  width: 100%;
+  overflow: hidden;
+
+  left: 0%;
+  right: 200%;
+  opacity: 1;
+  transition: all 0.5s ease-out;
+  /* z-index: -30; */
+  /* PROGRESS-SLIDER CSS */
 }
 .progress-div {
   display: flex;
@@ -240,10 +239,6 @@
 }
 /* MEDIA QUERIES FOR PLAYER */
 @media (max-width: 1000px) {
-  /* PROGRESS BAR */
-  .progress-main {
-    width: 90%;
-  }
   /* MUSIC PLAYER DISPLAY IMAGE / ARTIST / SONGNAME */
   .player-container {
     width: 50%;
@@ -273,5 +268,37 @@
     text-align: center;
     font-size: 25px;
     color: rgb(187, 187, 187);
+  }
+  .volume-bar {
+    transform: rotate(270deg);
+    -webkit-appearance: none;
+    width: 60px;
+    height: 10px;
+    background-color: rgb(26, 26, 26);
+    border: 1px solid rgb(58, 58, 58);
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+  .volume-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 30px;
+  }
+  .volume-slider {
+    display: flex;
+    width: 10px;
+    justify-content: center;
+  }
+  .fa-icon-volume {
+    position: absolute;
+    top: 5px;
+    right: 24.5px;
+    transform: rotate(270deg);
+    font-size: 12px;
+    color: #a3a3a3;
   }
 }
