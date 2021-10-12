@@ -1,0 +1,290 @@
+ .songs-title{
+   color: #d8d8d8;
+     text-align: left;
+     font-family: 'Inter', sans-serif;
+ }
+  .albums-title{
+  color: #d8d8d8;
+  vertical-align: middle;
+    font-family: 'Inter', sans-serif;
+
+  }
+
+ .artist-name{
+   color: #d8d8d8;
+     font-family: 'Irish Grover', cursive;
+ }
+
+
+ .artist-description{
+   margin-bottom: 25px;
+   overflow: hidden;
+   
+  
+ }
+
+ .card-cointainer{
+   display: flex;
+   align-items: center;
+ }
+ 
+ 
+ .card {
+    display: inline-flex; 
+   margin: 0 20px; 
+   border: 2px solid green;
+   border-radius: 15px;
+   padding: 25px 20px;
+   flex-direction: column;
+ }
+
+ .card-clicked .artist-description{
+      display: inline-flex; 
+   margin: 0 20px; 
+   border: 2px solid green;
+   border-radius: 15px;
+   padding: 25px 20px;
+   flex-direction: column;
+   max-height: none;
+ }
+ 
+ .card-btn{
+   background-color: green;
+   display: inline-flex;
+   border: 1px solid green;
+   border-radius: 22px ;
+   height: 25px;
+   padding: 0 25px;
+   margin: 10px 10px 10px 0px;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+   transition: .3s;
+   color: white;
+ }
+
+
+
+ .card-btn:hover{
+   background: rgb(1, 56, 1);
+   color: white;
+   cursor: pointer;
+ }
+
+
+
+ .grid-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.song-container {
+  display: flex;
+  cursor: pointer;
+ 
+  margin-bottom: 4px;
+}
+.song-pic {
+     width: 60px;
+     height: 60px;
+  cursor: pointer;
+  padding: 4px 4px 4px 4px;
+}
+.song-name {
+  align-self: center;
+}
+.song-name > h4
+ {
+     color: #a3a3a3;
+  text-align: left;
+}
+
+
+
+@media (max-width: 1000px) {
+
+  .albums-title{
+  color: #d8d8d8;
+    text-align:center; 
+  vertical-align: middle;
+  
+
+  }
+
+  .btn-container{
+    text-align:center; 
+  vertical-align: middle;
+  }
+
+   .artist-name{
+    text-align: center;
+     font-family: 'Irish Grover', cursive;
+ }
+
+    .songs-title{
+      margin: 10px;
+     text-align: left;
+     font-size:x-large;
+     
+ }
+
+ .albums-title{
+   margin-top: 10px;
+   margin-bottom: 10px;
+   font-size:x-large;
+ }
+
+  .albums-container{
+   text-align: center;
+ } 
+
+ .albums-p{
+    text-align:center; 
+  vertical-align: middle;
+  color: #a3a3a3
+  
+ }
+ /* .albums-name{
+   text-align: center;
+ }
+
+ .albums-img {
+   text-align: center;
+ 
+ } */
+
+ .grid-container {
+  display: grid;
+  grid-template-columns: 100%;
+}
+.song-container {
+  display: flex;
+  cursor: pointer;
+ 
+  margin-bottom: 4px;
+}
+.song-pic {
+     width: 60px;
+     height: 60px;
+  cursor: pointer;
+  padding: 4px 4px 4px 4px;
+}
+.song-name {
+  align-self: center;
+}
+.song-name > h4
+ {
+     color: #a3a3a3;
+  text-align: left;
+}
+    
+}
+
+ 
+ 
+ 
+
+
+
+ /*modal nedanför */
+ 
+  body.active-popup {
+    overflow-y: hidden;
+} 
+
+.btn-popup {
+     background-color: green;
+   display: inline-flex;
+   border: 1px solid green;
+   border-radius: 22px ;
+   height: 25px;
+   padding: 0 25px;
+   margin: 10px 10px 10px 0px ;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+   transition: .3s;
+   color: white;
+}
+
+.btn-popup:hover {
+   background: rgb(1, 56, 1);
+   color: white;
+   cursor: pointer;
+}
+
+  .popup, .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+} 
+
+.input-text::placeholder{
+  color: white;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+}
+ .popup-content {
+   
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: rgb(177, 175, 175);
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+} 
+
+.close-popup {
+
+   background-color: green;
+   display: inline-flex;
+   border: 1px solid green;
+   border-radius: 22px ;
+   height: 25px;
+   padding: 0 25px;
+   margin: 10px 10px 10px 0px;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+   transition: .3s;
+   color: white;
+ 
+}  
+
+.copy-btn{
+    background-color: green;
+   display: inline-flex;
+   border: 1px solid green;
+   border-radius: 22px ;
+   height: 25px;
+   padding: 0 25px;
+   margin: 10px 10px 10px 0px;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+   transition: .3s;
+   color: white;
+}
+
+.copy-btn:hover{
+   background: rgb(1, 56, 1);
+   color: white;
+   cursor: pointer;
+}
+
+.close-popup:hover{
+    background: rgb(1, 56, 1);
+   color: white;
+   cursor: pointer;
+}
+
+

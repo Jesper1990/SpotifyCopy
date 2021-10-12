@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import './Userlogin.css'
+import { Link } from "react-router-dom";
 
 function Userlogin () {
 
@@ -14,9 +15,7 @@ function Userlogin () {
     console.log(mess)
   }*/
 
-
   const [usernamex, setUsername] = useState('')
-
   const [passwordx, setPassword] = useState('')
 
   async function springLogin() {
@@ -58,6 +57,7 @@ function Userlogin () {
     <div className='container'>
       <form className='form-group'>
         <input
+          className="input-username"
           onChange={e => setUsername(e.target.value)}
           id='name'
           value={usernamex}
@@ -65,6 +65,7 @@ function Userlogin () {
           type='text'
         ></input>
         <input
+          className="input-password"
           onChange={e => setPassword(e.target.value)}
           id='password'
           value={passwordx}
@@ -73,8 +74,10 @@ function Userlogin () {
         ></input>
         
         
-         <br /><br />
-        <p>Not a member? Register now</p>
+        <br /><br />
+        <Link to="/register">
+        <p className="p-text">Not a member? Register now</p>
+        </Link>
         </form>
         <button onClick={springLogin} className='btn'>Login</button>
       <br />

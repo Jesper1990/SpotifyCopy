@@ -1,17 +1,19 @@
 .NavbarItems{
       background: rgb(122,122,122);
-      background: linear-gradient(90deg, rgba(122,122,122,1) 19%, rgba(0,0,0,1) 100%);
+      background: linear-gradient(90deg, rgba(122,122,122,1) 19%, rgb(63, 62, 62) 100%);
      height: 70px;
      display: flex;
      justify-content: center;
      align-items: center;
      font-size:1.2rem;
+     
 
 }
 
 .navbar-logo{
       color: #fff;
       justify-self: end;
+      /* position:absolute;       */
      margin-left: 20px;
      cursor: pointer;
 
@@ -24,6 +26,7 @@
       color:#008a18
 }
 .fa-bars{
+ 
       color: #008a18;
 }
 .nav-menu{
@@ -31,7 +34,7 @@
       grid-template-columns: repeat(5,auto);
       grid-gap: 10px;
       list-style: none;
-      text-align: right;
+      text-align: center;
       width: 70vw;
       justify-content: end;
       margin-left : 2rem;
@@ -53,52 +56,66 @@
 }
 
 .menu-icon{
-      display: none;
+           display: none;
 }
 
+.logo-link{
+      text-decoration: none;
+}
 
 @media screen and (max-width: 700px) {
        .NavbarItems{
       position: relative;
             }
+            
       .nav-menu{
-             display: none;
+            display:flex;
+            flex-direction: column;
+            width: 100%;
+            height:500px;
+            position: absolute;
+            top:70px;
+             /* display: none; */
+             /* display:hidden;   */
             /* background:  rgb(95, 90, 90); */
-            left: 0;
-            opacity: 1;
-            transition: all 1.5s ease;
+            left: -100%;
+            opacity: 0;
+            transition: all 0.5s ease;
             z-index: 1;
+            
           
       }
 
-      .active{
-            
-            background: linear-gradient(90deg, rgba(122,122,122,1) 20%, rgba(0,0,0,1) 100%);
+      .nav-menu.act {
+            /* list-style: none; */
+            /* display: hidden; */
+            background:  #343434;
             display:flex;
             flex-direction: column;
-            width:100%;
-            height:400px;
+            width:99%;
+            height:350px;
             position:absolute;
             top: 70px;
-            left: 0%;
+            left: -8%;
+            /* right:200%; */
             opacity: 1;
-            transition: all 1.5s ease-out
+            transition: all 0.5s ease-out;
+           
       }
 
-      /* .testdiv{
-            background:  rgb(95, 90, 90);
-      } */
+     
       .nav-links{
             
             text-align: center;
-            padding: 2rem;
-            width: 100%;
+            padding: 0.5rem;
+            width: 50%;
+            border-radius: 10px;
             display: table;
 
       }
       .nav-links:hover{
              background-color: #008a18;
-             border-radius: 0;
+             border-radius: 10;
 
       }
       /* .navbar-logo{
@@ -116,7 +133,7 @@
       }
       .menu-icon{
             display:flex;
-            justify-self: end;
+            justify-self: flex-start;
             position:absolute;
             top:0;
             right:0;
@@ -126,3 +143,4 @@
 
       }
 }
+

@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
+import './ArtistPage.css'
+
+
 
  
 function Artist() {
 
   const [artists, setArtists] = useState()
   let { browseid } = useParams()
+
+  const [popup, setPopup] = useState(false);
+
+  const togglePopup = () => {
+    setPopup(!popup)
+  }
+
 
   useEffect(() => {
     let canceled = false
@@ -26,12 +36,103 @@ function Artist() {
   }, [])
   console.log("hej", artists)
 
+  const [clicked, setClicked] = useState(false)
+
+  const toggleClick = () => {
+    
+    setClicked(!clicked)
+    
+  }
+  
   
   return (
     <div>
-           <h1>{artists && artists.name}</h1>
-      <p>{artists && artists.description}</p> 
+
+      
+
+      
+      
+      <h1 className="artist-name">{artists && artists.name}</h1>
+      <div className="btn-container">
+      <button className="card-btn" onClick={toggleClick}>About</button>
+      <button onClick={togglePopup} className="btn-popup">Share with Link</button>
+      </div>
+      {clicked && (
+      <div className="card-container">
+      <div className="card">
+        
+        <p className="artist-description">{artists && artists.description}</p>
+        <div className="card-footer">
+         <button className="card-btn" onClick={toggleClick}>Close</button>
+        </div>
+        </div>
+        </div>
+      )}
+      
+      <h3 className="songs-title">Most popular songs</h3>
+
+        <div className="grid-container">
+          {artists && artists.products.singles.content.map(song => (
+            <div className="grid-display">
+              <div className="song-container">
+                <img className="song-pic" src={song.thumbnails[0].url} />
+                <div className="song-name">
+                  <h4>{song.name}</h4>
+                </div>
+              </div>
+            </div>
+
+          ))}
+        </div>
+      
+       {/* <div>{artists && artists.products.singles.content.map(song => (
+        <ul>
+        <li>
+          {song.name}
+        <img className="song-pic" src = {song.thumbnails[0].url}></img>
+          </li>
+          </ul>
+           
+        
+      ))}</div> */}
+
+      <h3 className="albums-title">Albums</h3>
+      <div>{artists && artists.products.albums.content.map(album => (
+        <div className="albums-container">
+          <div className ="albums-name">
+            <p className="albums-p">{album.name}</p>
+          </div>
+          <div className="albums-img">
+            <img src={album.thumbnails[0].url}></img>
+            </div>
+        </div>
+      ))}</div>
+      
+      
+      
+     
+      {popup && (
+        <div className="popup">
+        <div className="overlay"></div>
+        <div className="popup-content">
+
+            <input
+              className="input-text"
+              type="text"
+              placeholder={`http://localhost:3000/artist/${browseid}`}
+            />
+            <button className="copy-btn" onClick={() => navigator.clipboard.writeText(`http://localhost:3000/artist/${browseid}`)} >
+            Copy Link!
+          </button>
+            <button onClick={togglePopup} className="close-popup" >Close</button>
+            
+        </div>
+        
     </div>
+      )}
+    </div>
+   
+
   )
       }
 export default Artist;

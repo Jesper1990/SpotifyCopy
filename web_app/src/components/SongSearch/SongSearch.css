@@ -22,10 +22,9 @@ input::placeholder {
 .search-container {
   display: flex;
   cursor: pointer;
-  border: 1px solid white;
   margin-bottom: 4px;
 }
-.search-img {
+.song-pic {
   cursor: pointer;
   padding: 4px 4px 4px 4px;
 }
@@ -48,11 +47,13 @@ p {
     margin: auto;
     width: 95%;
   }
-  .search-field {
-    background-color: red;
+  .search-field::placeholder {
+    color: #a3a3a3;
   }
-  /* .btn-search {
-  } */
+  .search-field {
+    color: #3d3d3d;
+    width: 100%;
+  }
   .grid-container {
     display: grid;
     grid-template-columns: 100%;
@@ -60,13 +61,12 @@ p {
   .search-container {
     display: flex;
     cursor: pointer;
-    border: 1px solid white;
     margin-bottom: 4px;
     width: 100%;
   }
   .search-img {
     cursor: pointer;
-    padding: 4px 4px 4px 4px;
+    padding: 4px 4px 4px 0px;
   }
   .search-name {
     align-self: center;
@@ -80,5 +80,31 @@ p {
   }
   .search-name > p {
     color: #c0c0c0;
+  }
+  .search-result {
+    margin: 10px 0px 20px 0px;
+    display: flex;
+    width: 100%;
+  }
+  .artist-container {
+    display: flex;
+    width: 100%;
+  }
+  .artist-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  .artist-text {
+    align-self: center;
+    width: 100%;
+    margin-left: 5px;
+    font-size: 25px;
+  }
+  .artist-link {
+    text-decoration: none;
+  }
+  .artist-h4 {
+    color: #d8d8d8;
   }
 }

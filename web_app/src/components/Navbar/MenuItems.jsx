@@ -1,7 +1,7 @@
 const MenuItems = [
   {
     title: 'Home',
-    url: '/StartPage',
+    url: '/',
     cName: 'nav-links'
   },
 
@@ -18,19 +18,14 @@ const MenuItems = [
   },
 
   {
-    title: 'Settings',
-    url: './SettingsPage',
-    cName: 'nav-links'
-  },
-  {
     title: 'Login',
     url: '/Userlogin',
-    cName: 'nav-links-mobile'
+    cName: 'nav-links'
   },
   {
     title: 'Register',
     url: '/register',
-    cName: 'nav-links-mobile'
+    cName: 'nav-links'
   },
 
 
