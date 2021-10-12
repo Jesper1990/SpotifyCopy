@@ -18,11 +18,6 @@ const MenuItems = [
   },
 
   {
-    title: 'Settings',
-    url: './SettingsPage',
-    cName: 'nav-links'
-  },
-  {
     title: 'Login',
     url: '/Userlogin',
     cName: 'nav-links'

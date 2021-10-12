@@ -34,9 +34,11 @@ function Navbar() {
           CopiFy <i className="fab fa-spotify" ></i>
         </h1>
       </div> */}
-      <h1 className="navbar-logo" href="localhost:3000/startPage" >
-        CopiFy <i className="fab fa-spotify" ></i>
-      </h1>
+      <Link to="/" className="logo-link">
+        <h1 className="navbar-logo" >
+          CopiFy <i className="fab fa-spotify" ></i>
+        </h1>
+      </Link>
       <div className="menu-icon" onClick={() => setIsOpen(!isOpen)}>
         <i className={isOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
       </div>

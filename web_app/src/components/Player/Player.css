@@ -96,6 +96,11 @@
 
 .fa-expand-arrows-alt {
   display: flex;
+  position: relative;
+    margin: 0px 5px 0px 5px;
+    background-color: rgb(26, 26, 26);
+    padding: 3px;
+    border-radius: 50%;
   /* justify-content: center; */
   /* position: absolute; */
   /* left: 35%;
@@ -107,57 +112,35 @@
 .fa-compress-arrows-alt {
   display: flex;
   flex-direction: row;
-  /* align-self: right; */
-  /* position: absolute;   */
-  /* position: relative; */
-  /* right: 35%; */
-  /* left: 500%; */
-  /* top: 35%; */
   color: #008a18;
-  /* z-index:100; */
 }
-/* .progress-div {
-  display: flex;
-  width: 100%;
-} */
+
 .player-show {
   display: flex;
   position: absolute;
-  /* background-color: black; */
-  /* width:30; */
+
   opacity: 1;
   height: 100%;
   top: 100%;
-  /* z-index:1; */
+
 }
 
 .player-hidden {
   background: #363636;
-  /* flex-direction: center; */
-
   display: flex;
   align-items: center;
-  /* border-style: solid; */
-  /* margin: top 100px; */
-  /* border-radius: 50%; */
-  /* border-width: 50; */
-  /* background-color: black; */
   position: fixed;
-  /* flex-direction:column; */
-  /* width:15%; */
   height: 75%;
-  /* position:absolute; */
-  top: 6%;
+  top:10%;
   width: 100%;
   overflow: hidden;
-
   left: 0%;
   right: 200%;
   opacity: 1;
   transition: all 0.5s ease-out;
-  /* z-index: -30; */
-  /* PROGRESS-SLIDER CSS */
+  z-index: -30;
 }
+ /* PROGRESS-SLIDER CSS */
 .progress-div {
   display: flex;
   align-items: center;
