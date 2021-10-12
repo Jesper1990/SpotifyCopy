@@ -1,12 +1,12 @@
  .songs-title{
    color: #d8d8d8;
      text-align: left;
-     font-family: 'Irish Grover', cursive;
+     font-family: 'Inter', sans-serif;
  }
   .albums-title{
   color: #d8d8d8;
   vertical-align: middle;
-  font-family: 'Irish Grover', cursive;
+    font-family: 'Inter', sans-serif;
 
   }
 
@@ -106,7 +106,7 @@
   color: #d8d8d8;
     text-align:center; 
   vertical-align: middle;
-  font-family: 'Irish Grover', cursive;
+  
 
   }
 
@@ -123,7 +123,8 @@
     .songs-title{
       margin: 10px;
      text-align: left;
-     font-size:x-large
+     font-size:x-large;
+     
  }
 
  .albums-title{

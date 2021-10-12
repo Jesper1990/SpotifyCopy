@@ -69,7 +69,7 @@ function Artist() {
         </div>
       )}
       
-      <h3 className="songs-title">Most popular songs!</h3>
+      <h3 className="songs-title">Most popular songs</h3>
 
         <div className="grid-container">
           {artists && artists.products.singles.content.map(song => (
@@ -96,7 +96,7 @@ function Artist() {
         
       ))}</div> */}
 
-      <h3 className="albums-title">Albums!</h3>
+      <h3 className="albums-title">Albums</h3>
       <div>{artists && artists.products.albums.content.map(album => (
         <div className="albums-container">
           <div className ="albums-name">
