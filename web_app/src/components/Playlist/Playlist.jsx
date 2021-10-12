@@ -48,10 +48,10 @@ async function showPlaylists () {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       })
       const plresp = await plresponse.json();
-      //console.log(plresp)
+      console.log(plresp)
       setPlaylists(plresp)
-      // console.log(playlists)
-      //playlists.forEach(x => console.log(x))
+      console.log(playlists)
+      playlists.forEach(x => console.log(x))
 }
 
 async function whoAmI() {
@@ -81,7 +81,7 @@ async function whoAmI() {
 
             <div>
                 
-            {playlists && playlists.map((pl,i) => (
+            {playlists && playlists.filter(x => x.owner === userId).map((pl,i) => (
                     <p>{pl.playlistName}</p>
                 ))}
             </div>

@@ -4,7 +4,7 @@ import './Userlogin.css'
 function Userlogin () {
 
 
-  useEffect(() => {
+  /*useEffect(() => {
     callSpringboot()
   }, [])
 
@@ -12,7 +12,7 @@ function Userlogin () {
     let resp = await fetch('/api/hello')
     let mess = await resp.text()
     console.log(mess)
-  }
+  }*/
 
 
   const [usernamex, setUsername] = useState('')
@@ -56,7 +56,7 @@ function Userlogin () {
 
   return (
     <div className='container'>
-      <form className='form-group' onSubmit={springLogin}>
+      <form className='form-group'>
         <input
           onChange={e => setUsername(e.target.value)}
           id='name'
@@ -71,11 +71,12 @@ function Userlogin () {
           placeholder='Password'
           type='password'
         ></input>
-        <button className='btn'>Login</button>
+        
         
          <br /><br />
         <p>Not a member? Register now</p>
         </form>
+        <button onClick={springLogin} className='btn'>Login</button>
       <br />
      
       <button onClick={whoAmI}>Who Am I</button>
