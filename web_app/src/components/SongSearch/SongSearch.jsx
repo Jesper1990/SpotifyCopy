@@ -61,6 +61,7 @@ const SongSearch = () => {
   return (
     <div className="search-main">
       <div>
+        <div className="search-div">
         <input
           className="search-field"
           type="text"
@@ -68,11 +69,8 @@ const SongSearch = () => {
           onChange={e => setInput(e.target.value)}
           onKeyPress={handleKeypress}
         />
-        {/* <button className="btn-search" onClick={buttonClick}>
-          Search
-        </button> */}
+        </div>
 
-        <div className="grid-container">
           {artists && artists.map(artist => (
 
             <div className="search-result" key={artist.browseId}>
@@ -86,7 +84,7 @@ const SongSearch = () => {
               </Link>
             </div>
           ))}
-        </div>
+
 
         <div className="grid-container">
           {/* <button onClick={testFunktion}>Test next</button> */}

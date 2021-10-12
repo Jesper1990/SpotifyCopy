@@ -9,7 +9,7 @@ import './Start.css'
 
 function Start() {
   return (
-    <div>
+    <div className="image-main">
       <div className="image-container">
         <Link to="/register">
         <img src={ProfilePicture} className="start-picture" />
