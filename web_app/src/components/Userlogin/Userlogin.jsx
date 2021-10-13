@@ -72,17 +72,18 @@ function Userlogin () {
           placeholder='Password'
           type='password'
         ></input>
-        
+         
         
         <br /><br />
+       
         <Link to="/register">
         <p className="p-text">Not a member? Register now</p>
         </Link>
         </form>
-        <button onClick={springLogin} className='btn'>Login</button>
+         <button onClick={springLogin} className='btn'>Login</button>
       <br />
+     <button onClick={whoAmI}>Who Am I</button>
      
-      <button onClick={whoAmI}>Who Am I</button>
     </div>
   )
 }
