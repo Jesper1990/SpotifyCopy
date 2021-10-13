@@ -11,12 +11,12 @@ const ProgressBar = () => {
   const [minutesDuration, setMinutesDuration] = useState(0)
   const [secondsDuration, setSecondsDuration] = useState(0)
 
-  //räknar ut längd på låt i %
+
   useEffect(() => {
     if (!videoPlayer) return;
     setProgress(null);
     setInterval(() => {
-
+      //räknar ut längd på låt i %
       let currentTime = videoPlayer.getCurrentTime()
       let duration = videoPlayer.getDuration()
       let timelaps = 0;
@@ -29,16 +29,6 @@ const ProgressBar = () => {
     }, 1000)
   }, [videoPlayer])
 
-  // const prog = () => {
-  //   if (videoPlayer) {
-
-  //     setProgress(timelaps)
-  //   }
-  //   if (!videoPlayer) {
-  //     setProgress(0)
-  //     return prog()
-  //   }
-  // }
 
   const getTime = () => {
     const time = Math.floor(videoPlayer.getCurrentTime())
