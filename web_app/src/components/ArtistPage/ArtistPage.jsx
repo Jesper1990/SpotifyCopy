@@ -61,8 +61,8 @@ function Artist() {
       <h3 className="songs-title">Most popular songs</h3>
 
         <div className="grid-container">
-          {artists && artists.products.singles.content.map(song => (
-            <div className="grid-display">
+          {artists && artists.products.singles.content.map((song, i) => (
+            <div className="grid-display" key={i}>
               <div className="song-container">
                 <img className="song-pic" src={song.thumbnails[0].url} />
                 <div className="song-name">
@@ -86,8 +86,8 @@ function Artist() {
       ))}</div> */}
 
       <h3 className="albums-title">Albums</h3>
-      <div>{artists && artists.products.albums.content.map(album => (
-        <div className="albums-container">
+      <div>{artists && artists.products.albums.content.map((album, i) => (
+        <div className="albums-container" key={i}>
           <div className ="albums-name">
             <p className="albums-p">{album.name}</p>
           </div>
