@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 // import { setVideoPlaylist } from '../../redux/ducks/videoPlaylist';
 import { setVideoId } from '../../redux/ducks/videoId';
@@ -11,17 +11,24 @@ const SongSearch = () => {
   const dispatch = useDispatch()
   const [input, setInput] = useState('')
   const [songs, setSongs] = useState()
-  const [playlist, setPlaylist] = useState([])
-  const playlistId = [];
+  const [playlists, setPlaylists] = useState()
+  // const playlistId = [];
   const [artists, setArtists] = useState()
+  const [userId, setUserId] = useState()
+  const [playlistId, setPlaylistId] = useState()
+
+  useEffect(() => {
+    whoAmI()
+    showPlaylists()
+  }, [])
 
   const getSong = () => {
     fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${input}`)
       .then((res) => res.json())
       .then((data) => {
         setSongs(data.content)
-        data.content.forEach(element => playlistId.push(element.videoId))
-        setPlaylist(playlistId)
+        // data.content.forEach(element => playlistId.push(element.videoId))
+        // setPlaylist(playlistId)
         
       })
   }
@@ -41,6 +48,7 @@ const SongSearch = () => {
       3. setVideoSongQueue to get the entire songs object to track index in the player.
   */
   const songClick = (song, i) => {
+    console.log(song.videoId);
     dispatch(setVideoId(song.videoId))
     dispatch(setVideoIndex(i))
     dispatch(setVideoSongQueue(songs))
@@ -50,12 +58,47 @@ const SongSearch = () => {
     if (e.key === 'Enter') {
       getSong()
       getArtist()
+      // whoAmI()
+      // showPlaylists()
     }
   }
 
   const buttonClick = () => {
     getSong()
     getArtist()
+  }
+
+  const whoAmI = () => {
+    fetch('/api/whoami')
+      .then((res) => res.json())
+      .then((data) => {
+        setUserId(data.id)
+      })
+  }
+
+  const showPlaylists = () => {
+    fetch('/api/playlists')
+      .then((res) => res.json())
+      .then((data) => {
+        setPlaylists(data)
+      })
+  }
+
+  const addToPlaylist = (song) => {
+    let songIds = [song.videoId]
+    const addId = { songIds }
+    if (userId) {
+      fetch(`/api/playlists/updateSongs/${playlistId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(addId)
+      }).then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        })
+    }
   }
 
   return (
@@ -96,6 +139,15 @@ const SongSearch = () => {
                   <h4>{song.artist.name}</h4>
                   <p>{song.name}</p>
                 </div>
+                
+              </div>
+              <div className="button-div">
+                <select onChange={e => setPlaylistId(e.target.value)}>
+                  {playlists && playlists.filter(data => data.owner === userId).map((playListOption) => (
+                    <option value={playListOption.id} onChange={(e) => console.log(e.target.value)}>{playListOption.playlistName}</option>
+                  ))}
+                </select>
+                <button className="playlist-add" onClick={() => addToPlaylist(song)}>Playlist</button>
               </div>
             </div>
 

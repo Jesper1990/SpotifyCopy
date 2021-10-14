@@ -42,4 +42,13 @@ public class PlaylistAPIController {
 
         return playlistService.updatePlaylist(newPlaylist, id);
     }
+
+    @PutMapping("/updateSongs/{id}")
+    public Playlist updateSongs(@RequestBody Playlist newPlaylist,
+                                   @PathVariable("id") Integer id) {
+
+        return playlistService.updateSongs(newPlaylist, id);
+    }
 }
+
+

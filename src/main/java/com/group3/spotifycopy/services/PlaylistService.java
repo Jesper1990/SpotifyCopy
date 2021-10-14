@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class PlaylistService {
@@ -53,10 +56,26 @@ public class PlaylistService {
 
         if (playlistToUpdate != null) {
             playlistToUpdate.setPlaylistName(playlist.getPlaylistName());
+
+
             playlistToUpdate.setSongIds(playlist.getSongIds());
         } else {
             playlistToUpdate.setId(id);
         }
+        PlaylistDTO updatedPlaylist = playlistDAO.addPlaylist(mapFromPlaylist(playlistToUpdate));
+        return mapToPlaylist(updatedPlaylist);
+    }
+
+    public Playlist updateSongs(Playlist playlist, Integer id) {
+        Playlist playlistToUpdate = getPlaylistById(id);
+
+            List<String> oldSongs = playlistToUpdate.getSongIds();
+            List<String> newSongs = playlist.getSongIds();
+            List<String> newList = Stream.concat(oldSongs.stream(), newSongs.stream())
+                    .collect(Collectors.toList());
+
+            playlistToUpdate.setSongIds(newList);
+
         PlaylistDTO updatedPlaylist = playlistDAO.addPlaylist(mapFromPlaylist(playlistToUpdate));
         return mapToPlaylist(updatedPlaylist);
     }
