@@ -34,7 +34,7 @@ function Userlogin () {
     });
 
     console.log(response)
-  
+    console.log(credentials);
     if(response.url.includes('error')) {
       console.log('Wrong username/password');
     }

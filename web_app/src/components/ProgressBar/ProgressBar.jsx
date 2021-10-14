@@ -5,7 +5,7 @@ import './ProgressBar.css'
 const ProgressBar = () => {
 
   const videoPlayer = useSelector(state => state.videoPlayer.videoPlayer)
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState('')
   const [seconds, setSeconds] = useState(0)
   const [minutes, setMinutes] = useState(0)
   const [minutesDuration, setMinutesDuration] = useState(0)
@@ -14,7 +14,7 @@ const ProgressBar = () => {
 
   useEffect(() => {
     if (!videoPlayer) return;
-    setProgress(null);
+    // setProgress(null);
     setInterval(() => {
       //räknar ut längd på låt i %
       let currentTime = videoPlayer.getCurrentTime()
