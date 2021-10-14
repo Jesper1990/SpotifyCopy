@@ -79,7 +79,7 @@ function Userlogin () {
        
         </form>
       <button onClick={springLogin} className='btn'>Login</button>
-       <Link to="/register">
+       <Link to="/register" className= "link">
         <p className="p-text">Not a member? Register now</p>
         </Link>
       <br />

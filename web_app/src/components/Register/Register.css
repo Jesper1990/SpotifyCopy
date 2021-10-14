@@ -3,6 +3,10 @@ body {
   height: max-content;
 }
 
+.link{
+  text-decoration: none;
+}
+
 .container {
   width: 50%;
   /* background-color: rgb(63, 62, 62); */

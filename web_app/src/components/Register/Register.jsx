@@ -42,7 +42,7 @@ const Register = () => {
 
         <button className='btn'>Submit</button>
         <br />
-        <Link to="/Userlogin">
+        <Link to="/Userlogin" className="link">
         <p className="p-text">Already a member? Login now</p>
         </Link>
       </form>
