@@ -5,3 +5,8 @@
 .input-password::placeholder{
   color: white;
 }
+
+.container{
+  display:flex;
+
+}

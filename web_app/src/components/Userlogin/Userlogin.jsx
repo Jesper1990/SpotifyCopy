@@ -76,11 +76,12 @@ function Userlogin () {
         
         <br /><br />
        
-        <Link to="/register">
+       
+        </form>
+      <button onClick={springLogin} className='btn'>Login</button>
+       <Link to="/register">
         <p className="p-text">Not a member? Register now</p>
         </Link>
-        </form>
-         <button onClick={springLogin} className='btn'>Login</button>
       <br />
      <button onClick={whoAmI}>Who Am I</button>
      
