@@ -141,14 +141,19 @@ const SongSearch = () => {
                 </div>
                 
               </div>
+              {userId ? 
               <div className="button-div">
-                <select onChange={e => setPlaylistId(e.target.value)}>
+                <select className="select-playlists" onChange={e => setPlaylistId(e.target.value)}>
                   {playlists && playlists.filter(data => data.owner === userId).map((playListOption) => (
                     <option value={playListOption.id} onChange={(e) => console.log(e.target.value)}>{playListOption.playlistName}</option>
                   ))}
                 </select>
-                <button className="playlist-add" onClick={() => addToPlaylist(song)}>Playlist</button>
-              </div>
+                <button className="playlist-add" onClick={() => addToPlaylist(song)}>Add</button>
+                </div>
+                :
+                <div></div>
+              }
+              
             </div>
 
           ))}
