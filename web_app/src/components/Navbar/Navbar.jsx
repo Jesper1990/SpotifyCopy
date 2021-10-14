@@ -53,7 +53,7 @@ function Navbar() {
           )
         })}
         <li>
-          <button onClick={logout}>Logout</button>
+          <button className="logout-btn" onClick={logout}>Logout</button>
         </li>
       </ul>
 
