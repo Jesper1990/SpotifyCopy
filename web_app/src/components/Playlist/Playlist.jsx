@@ -38,10 +38,6 @@ fetch('/api/playlists', {
     })
 }
 
-function addSongToPlaylist () {
-
-}
-
 async function showPlaylists () {
     
     const plresponse = await fetch("http://localhost:4000/api/playlists", {
@@ -49,10 +45,7 @@ async function showPlaylists () {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       })
       const plresp = await plresponse.json();
-      console.log(plresp)
       setPlaylists(plresp)
-      console.log(playlists)
-      playlists.forEach(x => console.log(x))
 }
 
 async function whoAmI() {
@@ -61,7 +54,6 @@ async function whoAmI() {
     try {
       loggedInUser = await response.json()
       setUserId(loggedInUser.id)
-      console.log(userId)
     }
     catch {
       console.log('Not logged in')
@@ -84,7 +76,7 @@ async function whoAmI() {
             <div>
                 
           {playlists && playlists.filter(x => x.owner === userId).map((pl, i) => (
-              <ul className="ul-list">
+              <ul className="ul-list" key={i}>
               <li>{pl.playlistName}</li>
               </ul>
                 ))}

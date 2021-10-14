@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import './ArtistPage.css'
-
-
-
  
 function Artist() {
 
@@ -15,7 +12,6 @@ function Artist() {
   const togglePopup = () => {
     setPopup(!popup)
   }
-
 
   useEffect(() => {
     let canceled = false
@@ -34,7 +30,6 @@ function Artist() {
       canceled = true
     }
   }, [])
-  console.log("hej", artists)
 
   const [clicked, setClicked] = useState(false)
 
@@ -43,15 +38,9 @@ function Artist() {
     setClicked(!clicked)
     
   }
-  
-  
+   
   return (
-    <div>
-
-      
-
-      
-      
+    <div>    
       <h1 className="artist-name">{artists && artists.name}</h1>
       <div className="btn-container">
       <button className="card-btn" onClick={toggleClick}>About</button>

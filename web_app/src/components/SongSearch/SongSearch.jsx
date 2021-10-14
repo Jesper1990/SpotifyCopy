@@ -48,7 +48,6 @@ const SongSearch = () => {
       3. setVideoSongQueue to get the entire songs object to track index in the player.
   */
   const songClick = (song, i) => {
-    console.log(song.videoId);
     dispatch(setVideoId(song.videoId))
     dispatch(setVideoIndex(i))
     dispatch(setVideoSongQueue(songs))
@@ -132,7 +131,7 @@ const SongSearch = () => {
         <div className="grid-container">
           {/* <button onClick={testFunktion}>Test next</button> */}
           {songs && songs.map((song, i) => (
-            <div className="grid-display" key={song.videoId}>
+            <div className="grid-display" key={i}>
               <div className="search-container" onClick={() => songClick(song, i)}>
                 <img className="search-img" src={song.thumbnails[0].url} />
                 <div className="search-name">
@@ -144,8 +143,8 @@ const SongSearch = () => {
               {userId ? 
               <div className="button-div">
                 <select className="select-playlists" onChange={e => setPlaylistId(e.target.value)}>
-                  {playlists && playlists.filter(data => data.owner === userId).map((playListOption) => (
-                    <option value={playListOption.id} onChange={(e) => console.log(e.target.value)}>{playListOption.playlistName}</option>
+                    {playlists && playlists.filter(data => data.owner === userId).map((playListOption) => (                   
+                    <option value={playListOption.id} onChange={(e) => console.log(e.target.value)} key={playListOption.id} >{playListOption.playlistName}</option>
                   ))}
                 </select>
                 <button className="playlist-add" onClick={() => addToPlaylist(song)}>Add</button>
