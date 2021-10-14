@@ -53,7 +53,8 @@ p {
 }
 .playlist-add {
   color: white;
-  background-color: green;
+  background-color: rgb(73, 72, 72);
+  border-color: green;
   height: 20px;
   cursor: pointer;
   border-radius: 50px;
@@ -61,6 +62,16 @@ p {
   padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 5px;
+}
+.select-playlists {
+  border-radius: 50px;
+  font-size: 12px;
+  background-color: rgb(73, 72, 72);
+  border-color: green;
+  color: white;
+  padding: 5px 5px 5px 5px;
 }
 .button-div {
   display: flex;
@@ -121,6 +132,7 @@ p {
   }
   .search-name {
     align-self: center;
+    max-width: 63%;
   }
   .search-name > h4,
   p {
