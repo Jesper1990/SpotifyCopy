@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import './Playlist.css'
 
 function Playlist() {
 
@@ -69,20 +70,23 @@ async function whoAmI() {
 
     return (
             <div>
-             <input 
+        <input
+          className="playlist-input"
              type="text" 
              placeholder="add new playlist"
              value={playlistname}
              onChange={e => setPlaylistName(e.target.value)}
               /> 
     
-             <button onClick={createPlaylist}>Add playlist</button>
+             <button className="playlist-btn" onClick={createPlaylist}>Add playlist</button>
             
 
             <div>
                 
-            {playlists && playlists.filter(x => x.owner === userId).map((pl,i) => (
-                    <p>{pl.playlistName}</p>
+          {playlists && playlists.filter(x => x.owner === userId).map((pl, i) => (
+              <ul className="ul-list">
+              <li>{pl.playlistName}</li>
+              </ul>
                 ))}
             </div>
             </div>

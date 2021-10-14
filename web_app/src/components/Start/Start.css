@@ -1,3 +1,39 @@
+.image-main {
+  margin-bottom: 150px;
+}
+.image-container {
+  width: 100%;
+}
+.start-picture {
+  height: 600px;
+  width: 100%;
+}
+.news-header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #e2e2e2;
+  font-size: 48px;
+}
+.news-container {
+  max-width: 80%;
+  margin: 0 auto;
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+  row-gap: 5%;
+  column-gap: 6.5%;
+}
+.news-picture {
+  height: 100%;
+  width: 100%;
+}
+.news-picture:hover {
+  transform: scale(1.05);
+  transition: all 0.2s ease-out;
+}
+
 @media (max-width: 1000px) {
   .start-picture {
     height: 100%;
