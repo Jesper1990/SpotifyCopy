@@ -35,13 +35,13 @@ const Player = () => {
   }, [videoId])
 
   // Ej fullt funktionell då den nu alltid startar på första ID:t även om man klickar på någon annan.
-  // useEffect(() => {
-  //   if (videoPlaylist) {
-  //     startPlaylist(videoPlaylist)
-  //     // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
-  //     playSong()
-  //   }
-  // }, [videoPlaylist])
+  useEffect(() => {
+    if (videoPlaylist) {
+      startPlaylist(videoPlaylist)
+      // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
+      playSong()
+    }
+  }, [videoPlaylist])
 
   const loadPlayer = () => {
     let ytPlayer = new YT.Player('yt-player', {
@@ -79,8 +79,7 @@ const Player = () => {
   }
   // Funktion för att ladda spelaren med en spellista (en array utav ID:s som skickas via store.)
   const startPlaylist = () => {
-    player.loadPlaylist(videoPlaylist, player.getPlaylistIndex())
-    console.log(player.loadPlaylist());
+    player.loadPlaylist(videoPlaylist)
   }
 
   // Funktion för att ändra toggle på "Play / Pause" ikonerna
@@ -95,18 +94,22 @@ const Player = () => {
   }
   // Funktion för knappen "Next"
   const nextSong = () => {
-    if (videoIndex < videoSongQueue.length) {
+    if (videoId && videoIndex < videoSongQueue.length) {
       const nextSong = videoSongQueue[videoIndex + 1]
       dispatch(setVideoIndex(videoIndex + 1))
       dispatch(setVideoId(nextSong.videoId))
+    } else {
+      player.nextVideo()
     }
   }
   // Funktion för knappen "Previous"
   const previousSong = () => {
-    if (videoIndex > 0) {
+    if (videoId && videoIndex > 0) {
       const nextSong = videoSongQueue[videoIndex - 1]
       dispatch(setVideoIndex(videoIndex - 1))
       dispatch(setVideoId(nextSong.videoId))
+    } else {
+      player.previousVideo()
     }
   }
 

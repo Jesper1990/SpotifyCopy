@@ -12,6 +12,7 @@ import Artist from './components/ArtistPage/ArtistPage';
 // import Progressbar from './components/Player/progressBar'
 import Playlist from './components/Playlist/Playlist';
 import MediaPlayer from './components/MediaPlayer/MediaPlayer';
+import AlbumPage from './components/ArtistPage/AlbumPage';
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/Userlogin" exact component={Userlogin} />
         <Route path="/Playlist" exact component={Playlist} />
         <Route path="/mediaplayer" exact component={MediaPlayer} />
+        <Route path="/albums/:browseid" exact component={AlbumPage} />
         <Player />
       </div>
 

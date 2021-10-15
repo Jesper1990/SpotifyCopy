@@ -27,6 +27,7 @@ const SongSearch = () => {
       .then((res) => res.json())
       .then((data) => {
         setSongs(data.content)
+        console.log(data.content);
         // data.content.forEach(element => playlistId.push(element.videoId))
         // setPlaylist(playlistId)
         

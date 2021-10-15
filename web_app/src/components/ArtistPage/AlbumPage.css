@@ -1,0 +1,56 @@
+.albumpage-pic {
+  margin-top: 10px;
+  display: block;
+  justify-content: center;
+  width: 55%;
+  margin: auto;
+}
+.start-playlist {
+  background-color: green;
+  border-radius: 50px;
+  padding: 4px;
+  color: white;
+  border-color: transparent;
+}
+.start-playlist-div {
+  display: flex;
+  justify-content: center;
+  margin: 14px;
+}
+.albumpage-name {
+  margin: 10px 0px 0px 10px;
+}
+.albumpage-name > h4 {
+  font-size: 15px;
+  color: #d8d8d8;
+}
+.albumpage-name > p {
+  font-size: 14px;
+  color: #9b9b9b;
+}
+.grid-albumpage {
+  display: grid;
+  grid-template-columns: 85% 15%;
+  row-gap: 10px;
+}
+.albumpage-fa {
+  display: flex;
+  justify-content: center;
+}
+.albumpage-play {
+  margin: auto;
+  font-size: 14px;
+  color: #bbbbbb;
+}
+.albumpage-play:hover {
+  color: rgb(27, 99, 5);
+}
+.go-back {
+  font-size: 25px;
+  color: #bbbbbb;
+  margin: 15px;
+  background-color: #494848;
+  width: 40px;
+  border-radius: 50px;
+  border-color: green;
+}

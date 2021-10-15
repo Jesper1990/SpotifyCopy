@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import './ArtistPage.css'
  
 function Artist() {
@@ -23,7 +23,8 @@ function Artist() {
       .then((res) => res.json())
       .then((data) => {
         if (!canceled) {
-         setArtists(data)
+          setArtists(data)
+          console.log(data);
         }
       })
     return () => {
@@ -42,6 +43,9 @@ function Artist() {
   return (
     <div>    
       <h1 className="artist-name">{artists && artists.name}</h1>
+      <div>
+        <img src={artists && artists.thumbnails[0].url} className="artist-picture" />
+      </div>
       <div className="btn-container">
       <button className="card-btn" onClick={toggleClick}>About</button>
       <button onClick={togglePopup} className="btn-popup">Share with Link</button>
@@ -86,13 +90,15 @@ function Artist() {
       ))}</div> */}
 
       <h3 className="albums-title">Albums</h3>
-      <div>{artists && artists.products.albums.content.map(album => (
-        <div className="albums-container">
+      <div>{artists && artists.products.albums.content.map((album) => (
+        <div className="albums-container" key={album.browseId}>
           <div className ="albums-name">
             <p className="albums-p">{album.name}</p>
           </div>
           <div className="albums-img">
+            <Link to={`/albums/${album.browseId}`}>
             <img src={album.thumbnails[0].url}></img>
+            </Link>
             </div>
         </div>
       ))}</div>
