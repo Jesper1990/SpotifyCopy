@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import './ArtistPage.css'
  
-function Artist() {
-
-  const [artists, setArtists] = useState()
+const Artist = () => {
   let { browseid } = useParams()
-
+  const [artists, setArtists] = useState()
   const [popup, setPopup] = useState(false);
+  const [clicked, setClicked] = useState(false)
 
   const togglePopup = () => {
     setPopup(!popup)
@@ -29,14 +28,10 @@ function Artist() {
     return () => {
       canceled = true
     }
-  }, [])
+  }, []) 
 
-  const [clicked, setClicked] = useState(false)
-
-  const toggleClick = () => {
-    
-    setClicked(!clicked)
-    
+  const toggleClick = () => {   
+    setClicked(!clicked)   
   }
    
   return (
@@ -73,17 +68,6 @@ function Artist() {
 
           ))}
         </div>
-      
-       {/* <div>{artists && artists.products.singles.content.map(song => (
-        <ul>
-        <li>
-          {song.name}
-        <img className="song-pic" src = {song.thumbnails[0].url}></img>
-          </li>
-          </ul>
-           
-        
-      ))}</div> */}
 
       <h3 className="albums-title">Albums</h3>
       <div>{artists && artists.products.albums.content.map((album, i) => (
@@ -96,10 +80,7 @@ function Artist() {
             </div>
         </div>
       ))}</div>
-      
-      
-      
-     
+          
       {popup && (
         <div className="popup">
         <div className="overlay"></div>
@@ -113,15 +94,11 @@ function Artist() {
             <button className="copy-btn" onClick={() => navigator.clipboard.writeText(`http://localhost:3000/artist/${browseid}`)} >
             Copy Link!
           </button>
-            <button onClick={togglePopup} className="close-popup" >Close</button>
-            
-        </div>
-        
+            <button onClick={togglePopup} className="close-popup" >Close</button>           
+        </div>       
     </div>
       )}
     </div>
-   
-
   )
-      }
+}
 export default Artist;

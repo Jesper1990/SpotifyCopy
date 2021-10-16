@@ -1,21 +1,21 @@
-.playlist-btn{
+.playlist-btn {
   background-color: green;
-   border-radius: 12px;
+  border-radius: 12px;
   color: white;
   width: 30%;
   height: 40px;
   margin: 1px 0px 10px 10px;
 }
 
-.ul-list{
+.ul-list {
   list-style-type: circle;
   list-style: disc outside none;
-display: list-item;
-margin-left: 25px;
-font-size: 22px;
-color: #d8d8d8;
+  display: list-item;
+  margin-left: 25px;
+  font-size: 22px;
+  color: #d8d8d8;
 }
 
-.playlist-input{
+.playlist-input {
   margin-left: 10px;
 }
