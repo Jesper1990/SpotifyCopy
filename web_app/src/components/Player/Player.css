@@ -89,13 +89,6 @@
 
 .hide-player {
   display: flex;
-  /* justify-self: flex-start;
-            position:absolute;
-            top:90;
-            right:0;
-            transform:translate(-100%, 60%);
-            font-size:1.8rem;
-            cursor: pointer; */
 }
 
 .fa-expand-arrows-alt {
@@ -105,10 +98,6 @@
   background-color: rgb(26, 26, 26);
   padding: 3px;
   border-radius: 50%;
-  /* justify-content: center; */
-  /* position: absolute; */
-  /* left: 35%;
-  top: 35%;*/
   color: #008a18;
   z-index: 1;
 }

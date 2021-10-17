@@ -1,12 +1,11 @@
-.input-username::placeholder{
+.input-username::placeholder {
   color: white;
 }
 
-.input-password::placeholder{
+.input-password::placeholder {
   color: white;
 }
 
-.container{
-  display:flex;
-
+.container {
+  display: flex;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { faCompressArrowsAlt, faExpandArrowsAlt, faPause, faPlay, faStepBackward, faStepForward, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
+import { faCompressArrowsAlt, faExpandArrowsAlt, faPause, faPlay, faStepBackward, faStepForward, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import './Player.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setVideoPlayer } from '../../redux/ducks/videoPlayer';
@@ -11,10 +11,8 @@ import { Link } from 'react-router-dom';
 
 const Player = () => {
   const dispatch = useDispatch()
-  // State på 1 specifikt ID som skickas via onClick i sökfunktionen.
   const videoId = useSelector(state => state.videoId.videoId)
-  // State på en Array utav ID:s som skickas via onClick i sökfunktionen, skall separeras för bättre funktionalitet.
-  const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
+  // const videoPlaylist = useSelector(state => state.videoPlaylist.videoPlaylist)
   const videoIndex = useSelector(state => state.videoIndex.videoIndex)
   const videoSongQueue = useSelector(state => state.videoSongQueue.videoSongQueue)
   const [player, setPlayer] = useState()
@@ -25,20 +23,16 @@ const Player = () => {
     loadPlayer()
   }, [])
 
-  // Startar spelaren med det specifika ID:t för låten man har klickat på.
   useEffect(() => {
     if (videoId) {
       startSong()
-      // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
       playSong()
     }
   }, [videoId])
 
-  // Ej fullt funktionell då den nu alltid startar på första ID:t även om man klickar på någon annan.
   // useEffect(() => {
   //   if (videoPlaylist) {
   //     startPlaylist(videoPlaylist)
-  //     // Kallar på toggle-funktionen för play-pause knappen för att aktiveras när spelaren är aktiv.
   //     playSong()
   //   }
   // }, [videoPlaylist])
@@ -52,8 +46,6 @@ const Player = () => {
         controls: 0,
         rel: 0,
       },
-
-      // c
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange,
@@ -77,13 +69,12 @@ const Player = () => {
   const startSong = () => {
     player.loadVideoById(videoId)
   }
-  // Funktion för att ladda spelaren med en spellista (en array utav ID:s som skickas via store.)
-  const startPlaylist = () => {
-    player.loadPlaylist(videoPlaylist, player.getPlaylistIndex())
-    console.log(player.loadPlaylist());
-  }
 
-  // Funktion för att ändra toggle på "Play / Pause" ikonerna
+  // const startPlaylist = () => {
+  //   player.loadPlaylist(videoPlaylist, player.getPlaylistIndex())
+  //   console.log(player.loadPlaylist());
+  // }
+
   const playSong = () => {
     if (player.getPlayerState() != 1) {
       setIsActive(true)
@@ -93,7 +84,7 @@ const Player = () => {
       player.pauseVideo()
     }
   }
-  // Funktion för knappen "Next"
+ 
   const nextSong = () => {
     if (videoIndex < videoSongQueue.length) {
       const nextSong = videoSongQueue[videoIndex + 1]
@@ -101,7 +92,7 @@ const Player = () => {
       dispatch(setVideoId(nextSong.videoId))
     }
   }
-  // Funktion för knappen "Previous"
+
   const previousSong = () => {
     if (videoIndex > 0) {
       const nextSong = videoSongQueue[videoIndex - 1]
@@ -113,8 +104,9 @@ const Player = () => {
   return (
     <div className="music-sticky">
       <div className="buttons">
-        <ul className={viewPlayer ? 'player-show' : 'player-hidden'}><div id="yt-player"></div></ul>
-        {/* <div id="yt-player" className="player"></div> */}
+        <ul className={viewPlayer ? 'player-show' : 'player-hidden'}>
+          <div id="yt-player"></div>
+        </ul>
         <div className="buttons">
 
         </div>
@@ -129,7 +121,15 @@ const Player = () => {
                 <h4 className="player-artist">{videoSongQueue[videoIndex].artist.name}</h4>
                 <p className="player-song">{videoSongQueue[videoIndex].name}</p>
                 <div className="hide-playe" onClick={() => setViewPlayer(!viewPlayer)}>
-                  {viewPlayer ? <FontAwesomeIcon icon={faExpandArrowsAlt} /> : <FontAwesomeIcon icon={faCompressArrowsAlt} />}
+                  {viewPlayer ?
+                    <FontAwesomeIcon
+                      icon={faExpandArrowsAlt}
+                    />
+                    :
+                    <FontAwesomeIcon
+                      icon={faCompressArrowsAlt}
+                    />
+                  }
                 </div>
               </div>
             </div>
@@ -143,8 +143,16 @@ const Player = () => {
               <FontAwesomeIcon className="fa-icon" icon={faStepBackward} />
             </li>
             <li className="list-play-pause" onClick={playSong}>
-              {/* Toggle funktion för att ändra display på ikoner. ? = True, : = False. "Play" är default eftersom useState är satt till false default.  */}
-              {isActive ? <FontAwesomeIcon className="play-pause" icon={faPause} /> : <FontAwesomeIcon className="play-pause" icon={faPlay} />}
+              {isActive ?
+                <FontAwesomeIcon
+                  className="play-pause"
+                  icon={faPause}
+                />
+                :
+                <FontAwesomeIcon
+                  className="play-pause"
+                  icon={faPlay}
+                />}
             </li>
             <li className="list-link" onClick={nextSong}>
               <FontAwesomeIcon className="fa-icon" icon={faStepForward} />
@@ -159,8 +167,12 @@ const Player = () => {
             max="100"
             onChange={(e) => player.setVolume(e.target.value)}
           />
-          <span className="test-span"><FontAwesomeIcon className="fa-icon-volume" icon={faVolumeUp} /></span>
-            {/* <span><FontAwesomeIcon className="fa-icon-volume" icon={faVolumeMute} /> </span> */}
+          <span className="test-span">
+            <FontAwesomeIcon
+              className="fa-icon-volume"
+              icon={faVolumeUp}
+            />
+          </span>
         </div> 
       </div>
       <div className="progress-div">

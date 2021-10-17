@@ -14,7 +14,6 @@ const ProgressBar = () => {
 
   useEffect(() => {
     if (!videoPlayer) return;
-    // setProgress(null);
     setInterval(() => {
       //räknar ut längd på låt i %
       let currentTime = videoPlayer.getCurrentTime()

@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css'
-/*import GetUsers from './components/services/getUsers' */
 import Register from './components/Register/Register'
 import Userlogin from './components/Userlogin/Userlogin'
 import Start from './components/Start/Start';
@@ -9,10 +8,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import SongSearch from './components/SongSearch/SongSearch';
 import Player from './components/Player/Player';
 import Artist from './components/ArtistPage/ArtistPage';
-// import Progressbar from './components/Player/progressBar'
 import Playlist from './components/Playlist/Playlist';
 import MediaPlayer from './components/MediaPlayer/MediaPlayer';
-
 
 
 function App() {
@@ -30,9 +27,7 @@ function App() {
         <Route path="/mediaplayer" exact component={MediaPlayer} />
         <Player />
       </div>
-
     </Router>
-
   )
 }
 

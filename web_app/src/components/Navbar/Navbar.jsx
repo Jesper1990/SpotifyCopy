@@ -5,10 +5,9 @@ import '../Navbar/Navbar.css';
 
 
 
-function Navbar() {
+const Navbar = () => {
 
-
-  function logout() {
+  const logout = () => {
     fetch('/logout')
   }
 
@@ -17,23 +16,6 @@ function Navbar() {
   return (
 
     <nav className="NavbarItems">
-      {/* <div className="logo-container">
-        <h1 className="navbar-logo" href="localhost:3000/startPage" >
-          CopiFy <i className="fab fa-spotify" ></i>
-        </h1>
-      </div>
-
-      <div className="menu-container">
-        <h1 className="" href="localhost:3000/startPage" >
-          CopiFy <i className="fab fa-spotify" ></i>
-        </h1>
-      </div>
-
-      <div className="link-container">
-        <h1 className="" href="localhost:3000/startPage" >
-          CopiFy <i className="fab fa-spotify" ></i>
-        </h1>
-      </div> */}
       <Link to="/" className="logo-link">
         <h1 className="navbar-logo" >
           CopiFy <i className="fab fa-spotify" ></i>
@@ -49,20 +31,15 @@ function Navbar() {
               <Link className={item.cName} to={item.url} onClick={() => setIsOpen(!isOpen)} >
                 {item.title}</Link>
             </li>
-            //
           )
         })}
         <li>
           <button className="logout-btn" onClick={logout}>Logout</button>
         </li>
       </ul>
-
-
     </nav>
   )
-
 }
-
 
 export default Navbar;
 

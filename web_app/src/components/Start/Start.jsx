@@ -7,7 +7,7 @@ import Eskimo from './images/eskimo.jpg'
 import Stay from './images/stay.jpg'
 import './Start.css'
 
-function Start() {
+const Start = () => {
   return (
     <div className="image-main">
       <div className="image-container">

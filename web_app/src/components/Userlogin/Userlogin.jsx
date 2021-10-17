@@ -1,20 +1,10 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState} from 'react'
 import './Userlogin.css'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-function Userlogin () {
+const Userlogin = () => {
 
-
-  /*useEffect(() => {
-    callSpringboot()
-  }, [])
-
-  async function callSpringboot() {
-    let resp = await fetch('/api/hello')
-    let mess = await resp.text()
-    console.log(mess)
-  }*/
-
+  const history = useHistory()
   const [usernamex, setUsername] = useState('')
   const [passwordx, setPassword] = useState('')
 
@@ -35,22 +25,21 @@ function Userlogin () {
 
     console.log(response)
     console.log(credentials);
-    if(response.url.includes('error')) {
+    if (response.url.includes('error')) {
       console.log('Wrong username/password');
+    } else {
+      history.push('/')
     }
+    
 
   }
 
-  async function whoAmI() {
-    let loggedInUser=null
-    let response = await fetch('/api/whoami')
-    try {
-      loggedInUser = await response.json()
-      console.log(loggedInUser)
-    }
-    catch {
-      console.log('Not logged in')
-    }
+  const whoAmI = () => {
+    fetch('/api/whoami')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+      })
   }
 
   return (
@@ -71,20 +60,16 @@ function Userlogin () {
           value={passwordx}
           placeholder='Password'
           type='password'
-        ></input>
-         
-        
-        <br /><br />
-       
-       
-        </form>
+        ></input>                
+        <br /><br />       
+      </form>
+      
       <button onClick={springLogin} className='btn'>Login</button>
        <Link to="/register" className= "link">
         <p className="p-text">Not a member? Register now</p>
         </Link>
       <br />
-     <button onClick={whoAmI}>Who Am I</button>
-     
+     <button onClick={whoAmI}>Who Am I</button>     
     </div>
   )
 }

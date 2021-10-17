@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// import { setVideoPlaylist } from '../../redux/ducks/videoPlaylist';
 import { setVideoId } from '../../redux/ducks/videoId';
 import './SongSearch.css'
 import { Link } from "react-router-dom";
@@ -12,7 +11,6 @@ const SongSearch = () => {
   const [input, setInput] = useState('')
   const [songs, setSongs] = useState()
   const [playlists, setPlaylists] = useState()
-  // const playlistId = [];
   const [artists, setArtists] = useState()
   const [userId, setUserId] = useState()
   const [playlistId, setPlaylistId] = useState()
@@ -26,10 +24,7 @@ const SongSearch = () => {
     fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${input}`)
       .then((res) => res.json())
       .then((data) => {
-        setSongs(data.content)
-        // data.content.forEach(element => playlistId.push(element.videoId))
-        // setPlaylist(playlistId)
-        
+        setSongs(data.content)       
       })
   }
 
@@ -42,11 +37,6 @@ const SongSearch = () => {
       })
   }
 
-  /* onClick function   
-      1. setVideoId to the player to play the correct song
-      2. setVideoIndex to get the index of the currently playing song.
-      3. setVideoSongQueue to get the entire songs object to track index in the player.
-  */
   const songClick = (song, i) => {
     dispatch(setVideoId(song.videoId))
     dispatch(setVideoIndex(i))
@@ -57,14 +47,7 @@ const SongSearch = () => {
     if (e.key === 'Enter') {
       getSong()
       getArtist()
-      // whoAmI()
-      // showPlaylists()
     }
-  }
-
-  const buttonClick = () => {
-    getSong()
-    getArtist()
   }
 
   const whoAmI = () => {

@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import './Register.css'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Register = () => {
+  const history = useHistory()
   const [username, setUsername] = useState('')
-
   const [password, setPassword] = useState('')
 
   const handleSubmit = e => {
     e.preventDefault()
+    history.push('/')
     const newUser = { username, password }
 
     fetch('http://localhost:4000/api/register', {
